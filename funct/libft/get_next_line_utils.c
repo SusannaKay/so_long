@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skayed <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/11 12:20:13 by skayed            #+#    #+#             */
-/*   Updated: 2025/01/11 12:20:15 by skayed           ###   ########.fr       */
+/*   Created: 2024/12/30 16:07:04 by skayed            #+#    #+#             */
+/*   Updated: 2025/01/07 16:32:16 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
-int	ft_strlen(const char *s)
+static int	ft_strlen(const char *s)
 {
 	int	i;
 

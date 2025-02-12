@@ -55,7 +55,3 @@ int is_closed(char **map)
     }
     return (0);
 }
-int check_char(char **map)
-{
-    
-}
