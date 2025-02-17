@@ -2,8 +2,7 @@
 # define SO_LONG_H
 
 #include "./mlx/mlx.h"
-#include "funct/libft/ft_printf/ft_printf.h"
-#include "funct/libft/libft.h"
+#include "./libft/libft.h"
 
 #include <X11/keysym.h>
 #include <X11/X.h>
@@ -32,11 +31,13 @@ typedef struct s_map
 {
     char    *filename;
     char **map;
-    int  width;
-    int  height;
+    int  len_row;  
+    int  rows; 
     int  collect;
 }   t_map;
 
-void find_player(char **map);
+//void find_player(char **map);
+void read_map(t_map *map);
+int verify_map(t_map *map);
 
 #endif

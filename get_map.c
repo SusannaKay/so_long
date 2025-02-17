@@ -1,14 +1,21 @@
 #include "so_long.h"
+static void remove_nl(char *line)
+{
+    int len;
 
-int check_map_size(const char *filename, int *max_len)
+    len = ft_strlen(line);
+    if (line[len -1] == '\n')
+        line[len -1] = '\0';
+}
+static int get_map_size(t_map *map)
 {
     int fd;
     char *line;
-    int row_count;
     int len;
 
-    row_count = 0;
-    fd = open("./map.ber", O_RDONLY);
+    map->rows = 0;
+    map->len_row = 0;
+    fd = open(map->filename, O_RDONLY);
     if (fd < 0)
         return (-1);
     line = get_next_line(fd);
@@ -17,63 +24,54 @@ int check_map_size(const char *filename, int *max_len)
         len = 0;
         while (line[len] && line[len] != '\n')
             len++;
-        if(*max_len == 0)
-            *max_len = len;
-        else if (len != *max_len)
-        {
-            free(line);
-            close(fd);
-            return(ft_printf("Error\nLa Mappa non e' rettangolare."), -1);
-        }
-        row_count++;
+        if(map->len_row == 0)
+            map->len_row = len;
+        map->rows++;
         free(line);
+        line = get_next_line(fd);
     }
     close(fd);
-    return (row_count);
+    return (map->rows);
     }
 
-char    **create_matrix(int row_count, t_data data)
+static void create_matrix(t_map *map)
 {
-    data.map = (char **)malloc((row_count + 1) * sizeof(char));
-    if(!data.map)
-        return (NULL);
-    return(data.map);
+    map->map = (char **)malloc((map->rows + 1) * sizeof(char *));
+    if(!map->map)
+        map->map = NULL;
 }
-char **fill_map(const char *filename, t_data data)
+static char **fill_map(t_map *map)
 {
     int fd;
     char *line;
     int i;
 
     i = 0;
-    fd = open(filename, O_RDONLY);
+    fd = open(map->filename, O_RDONLY);
     if (fd < 0)
     {
-        free (data.map);
+        free (map->map);
         return (NULL);
     }
     line = get_next_line(fd);
     while(line)
     {
-        data.map[i] = line;
+        map->map[i] = line;
+        remove_nl(map->map[i]);
         i++;
+        line = get_next_line(fd);
     }
-    data.map[i] = NULL;
+    map->map[i] = NULL;
     close(fd);
-    return (data.map);
+    return (map->map);
 }
 
-char **read_map(const char *filename, t_data data)
+void read_map(t_map *map)
 {
-    int max_len;
-    int row_count;
-
-    row_count = check_map_size(filename, &max_len);
-    if(row_count < 0)
-        return(NULL);
-    create_matrix(row_count, data);
-    if(!data.map)
-        return (NULL);
-    fill_map(filename, data);
-    return (data.map);
+    get_map_size(map);
+    create_matrix(map);
+    if(!map->map)
+        map = NULL;
+    fill_map(map);
+    verify_map(map);
 }

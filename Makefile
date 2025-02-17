@@ -5,12 +5,12 @@ CFLAGS = -Wall -Wextra -Werror
 MINILIBX_PATH = ./mlx
 MINILIBX = $(MINILIBX_PATH)/libmlx.a
 
-LIBFT_PATH = funct/libft
+LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
 
 
-SRC = main.c
+SRC = main.c get_map.c valid_map.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

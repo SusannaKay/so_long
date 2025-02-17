@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skayed <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/11 10:16:22 by skayed            #+#    #+#             */
-/*   Updated: 2025/01/11 10:47:29 by skayed           ###   ########.fr       */
+/*   Created: 2025/01/11 12:20:26 by skayed            #+#    #+#             */
+/*   Updated: 2025/01/11 12:20:28 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 # define BUFFER_SIZE 4
 #endif
 
-#include "get_next_line.h"
+#ifndef N_FD
+# define N_FD 1024
+#endif
+
+#include "libft.h"
 
 static char	*ft_bytes(char **tmp, char *buf, int bytes_read)
 {
@@ -97,27 +101,27 @@ static void	ft_append(char **tmp, char *buf)
 		*tmp = ft_strdup(buf);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line_bonus(int fd)
 {
 	char		*buf;
 	int			bytes_read;
-	static char	*tmp;
+	static char	*tmp[N_FD];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= N_FD || BUFFER_SIZE <= 0)
 		return (NULL);
 	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buf)
 		return (NULL);
 	while (1)
 	{
-		if (tmp && ft_strchr(tmp, '\n'))
-			return (ft_nl_tmp(&tmp, buf));
+		if (tmp[fd] && ft_strchr(tmp[fd], '\n'))
+			return (ft_nl_tmp(&tmp[fd], buf));
 		bytes_read = read(fd, buf, BUFFER_SIZE);
 		if (bytes_read <= 0)
-			return (ft_bytes(&tmp, buf, bytes_read));
+			return (ft_bytes(&tmp[fd], buf, bytes_read));
 		buf[bytes_read] = '\0';
 		if (ft_strchr(buf, '\n'))
-			return (ft_nl_buf(&tmp, buf));
-		ft_append(&tmp, buf);
+			return (ft_nl_buf(&tmp[fd], buf));
+		ft_append(&tmp[fd], buf);
 	}
 }

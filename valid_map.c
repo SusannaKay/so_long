@@ -5,53 +5,58 @@
 // 1 exit (E), almeno 1 collectible (C), 1 starting position (P)
 #include "so_long.h"
 
-int is_rectangular(char **map)
+static int is_rectangular(t_map *map)
 {
-    int row_count;
+    int i;
     int len_row;
 
-    row_count = 0;
-    len_row = 0;
-    while(map[row_count] != NULL)
+    i = 0;
+    len_row = ft_strlen(map->map[i]);
+    while(map->map[i] != NULL)
     {
-        if (len_row == 0)
-            len_row = ft_strlen(map[row_count]);
-        else
-            {
-                if (ft_strlen(map[row_count]) != len_row)
-                    return(ft_printf("Error\nMappa non valida"), -1);
-            }
-        row_count++;    
+        if (ft_strlen(map->map[i]) != len_row)
+            return(ft_printf("Error\nMappa non valida"), -1);
+
+        i++;    
     }
-    if (row_count == len_row)
+    if (i == len_row)
         return(ft_printf("Error\nMappa non rettangolare"), -1);
     return (0);
 }
 
-int is_closed(char **map)
+
+static int is_closed(char **map)
 {
-    int row_count;
+    int i;
     int len_row;
     int last_row;
 
-    row_count = 0;
+    i = 0;
     last_row = 0;
 
     while(map[last_row] != NULL)
         last_row++;
     last_row--;
-    while (map[row_count])
+    while (map[i])
     {
         len_row = 0;
-        while (map[row_count][len_row])
+        while (map[i][len_row])
         {
-            if ((row_count == 0 || row_count == last_row) && map[row_count][len_row] != '1')
+            if ((i == 0 || i == last_row) && map[i][len_row] != '1')
                 return (ft_printf("Error\nMappa aperta"), -1);
             len_row++;
         }
-        if (map[row_count][0] != '1' && map[row_count][ft_strlen(map[row_count]) - 1] != '1')
+        if (map[i][0] != '1' && map[i][ft_strlen(map[i]) - 1] != '1')
             return (ft_printf("Error\nMappa aperta"), -1);
-        row_count++;
+        i++;
     }
     return (0);
+}
+
+int verify_map(t_map *map)
+{
+    is_rectangular(map);
+    ft_printf("%d",is_closed(map->map));
+
+    return(ft_printf("mappa valida"), 0);
 }
