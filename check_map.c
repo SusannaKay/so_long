@@ -48,7 +48,7 @@ static int is_closed(char **map)
                 return (ft_printf("Error\nMappa aperta"), -1);
             len_row++;
         }
-        if (map[i][0] != '1' && map[i][ft_strlen(map[i]) - 1] != '1')
+        if (map[i][0] != '1' || map[i][ft_strlen(map[i]) - 1] != '1')
             return (ft_printf("Error\nMappa aperta"), -1);
         i++;
     }
@@ -75,14 +75,14 @@ static int parsing_map(t_map *map)
                 if (!p_counter)
                     p_counter += 1;
                 else
-                    return (1);
+                    return (ft_printf("Troppi player.\n"), 1);
             }
             if (map->map[i][j] == 'E')
             {
                 if (!e_counter)
                     e_counter += 1;
                 else
-                    return (1);
+                    return (ft_printf("Troppe exit.\n"), 1);
             }
             if (map->map[i][j] == 'C')
                 map->collect++;
@@ -95,9 +95,14 @@ static int parsing_map(t_map *map)
 
 int verify_map(t_map *map)
 {
-    //is_rectangular(map);
-    //is_closed(map->map);
-    parsing_map(map);
+    if(is_rectangular(map) == 0)
+        ft_printf("la mappa e' rettangolare.\n");
+    if(is_closed(map->map) == 0)
+        ft_printf("la mappa e' chiusa.\n");
+
+    if(parsing_map(map) == 0)
+        return (ft_printf("Collectibles number: %d\n"), map->collect);
+
 
     return (ft_printf("mappa valida"), 0);
 }
