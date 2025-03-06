@@ -90,12 +90,13 @@ static int parsing_map(t_map *map)
         }
         i++;
     }
+    return(0);
 }
 
 int verify_map(t_map *map)
 {
-    is_rectangular(map);
-    is_closed(map->map);
+    //is_rectangular(map);
+    //is_closed(map->map);
     parsing_map(map);
 
     return (ft_printf("mappa valida"), 0);

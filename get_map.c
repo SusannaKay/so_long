@@ -39,7 +39,11 @@ static void create_matrix(t_map *map)
 {
     map->map = (char **)malloc((map->rows + 1) * sizeof(char *));
     if (!map->map)
-        map->map = NULL;
+        {
+            map->map = NULL;
+            return;
+        }
+
 }
 static char **fill_map(t_map *map)
 {
@@ -63,17 +67,25 @@ static char **fill_map(t_map *map)
         line = get_next_line(fd);
     }
     map->map[i] = NULL;
+    i = 0;
+    ft_printf("Stampo la mappa:\n");
+    while(map->map[i])
+    {
+        ft_printf("%s\n", map->map[i]);
+        i++;
+    }
     close(fd);
     return (map->map);
 }
 
 void read_map(t_map *map)
 {
-    if (get_map_size(map) < 0)
-        return;
+    ft_printf("righe lette: %d\n",get_map_size(map));
     create_matrix(map);
-    if (!map->map)
-        return;
-    if (!fill_map(map))
-        return;
+    if (map-> map != NULL)
+        ft_printf("matrice creata correttamente\n");
+    if(fill_map(map) >0 )
+        ft_printf("Mappa duplicata correttamente\n");
+
+    return;
 }

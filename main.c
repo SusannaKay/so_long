@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
         if (!map)
             return (0);
 
-        map->filename = ft_strjoin("maps/", argv[1]);
+        map->filename = ft_strjoin("./", argv[1]);
         if (!map->filename)
         {
             free(map);
@@ -62,8 +62,12 @@ int main(int argc, char *argv[])
             free(map);
             return (0);
         }
+        ft_printf("Strutture create correttamente.\n");
         read_map(map);
+        ft_printf("Mappa letta correttamente.\n");
+        
         verify_map(map);
+        ft_printf("Mappa verificata.\n");
         create_window(data, map);
         create_loop(data);
 
@@ -71,5 +75,5 @@ int main(int argc, char *argv[])
         free(map);
         return (0);
     }
-    return (1);
+    return (ft_printf("Error\n specificare una mappa"), 1);
 }
