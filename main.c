@@ -1,4 +1,7 @@
 #include "so_long.h"
+// TO DO: function to create and init structs 
+// TO DO: function to free the structs
+// TO DO: add close function with mouse ( + check for seg fault ) 
 
 static void create_window(t_mlx *data, t_map *map)
 {

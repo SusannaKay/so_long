@@ -8,7 +8,7 @@ MINILIBX = $(MINILIBX_PATH)/libmlx.a
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
-SRC = main.c get_map.c check_map.c
+SRC = main.c get_map.c check_map.c flood_fill.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
