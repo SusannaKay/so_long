@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
         map->filename = ft_strjoin("./", argv[1]);
         if (!map->filename)
         {
+            ft_printf("libero map");
             free(map);
             return (0);
         }
@@ -62,12 +63,8 @@ int main(int argc, char *argv[])
             free(map);
             return (0);
         }
-        ft_printf("Strutture create correttamente.\n");
         read_map(map);
-        ft_printf("Mappa letta correttamente.\n");
-        
         verify_map(map);
-        ft_printf("Mappa verificata.\n");
         create_window(data, map);
         create_loop(data);
 

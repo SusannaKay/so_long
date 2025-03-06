@@ -1,8 +1,4 @@
-// OK mappa rettangolare
-// OK tutte le righe della stessa lunghezza, lunghezza != da numero di righe
-// OK mappa chiusa : tutti i bordi devono avere 1
 // mappa con una soluzione: collectibles accessibili, uscita accessibile : almeno una posizione attorno al carattere, deve essere 0
-// OK 1 exit (E), almeno 1 collectible (C), 1 starting position (P)
 #include "so_long.h"
 
 // verifica se il numero di righe è diverso dal numero di colonne, e che tutte le righe abbiano la stessa lunghezza
@@ -54,6 +50,7 @@ static int is_closed(char **map)
     }
     return (0);
 }
+
 // check numero di P, E, numero collezionabili e li salva nella struct 
 static int parsing_map(t_map *map)
 {
@@ -65,6 +62,7 @@ static int parsing_map(t_map *map)
     i = 0;
     p_counter = 0;
     e_counter = 0;
+    map->collect = 0;
     while (map->map[i] != NULL)
     {
         j = 0;
@@ -85,7 +83,10 @@ static int parsing_map(t_map *map)
                     return (ft_printf("Troppe exit.\n"), 1);
             }
             if (map->map[i][j] == 'C')
-                map->collect++;
+                {
+                    map->collect++;
+                    ft_printf("Trovato C in [%d, %d], totale: %d\n", i, j, map->collect);
+                }
             j++;
         }
         i++;
@@ -101,8 +102,6 @@ int verify_map(t_map *map)
         ft_printf("la mappa e' chiusa.\n");
 
     if(parsing_map(map) == 0)
-        return (ft_printf("Collectibles number: %d\n"), map->collect);
-
-
+        return (ft_printf("Collectibles number: %d\n", map->collect), 0);
     return (ft_printf("mappa valida"), 0);
 }
