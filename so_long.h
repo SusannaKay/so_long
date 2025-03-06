@@ -35,4 +35,6 @@ typedef struct s_map
     int  collect;
 }   t_map;
 
+int verify_map(t_map *map);
+void read_map(t_map *map);
 #endif

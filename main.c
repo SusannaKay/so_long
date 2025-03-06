@@ -62,7 +62,8 @@ int main(int argc, char *argv[])
             free(map);
             return (0);
         }
-
+        read_map(map);
+        verify_map(map);
         create_window(data, map);
         create_loop(data);
 

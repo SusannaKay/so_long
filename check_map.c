@@ -1,4 +1,3 @@
-#include <so_long.h>
 // OK mappa rettangolare
 // OK tutte le righe della stessa lunghezza, lunghezza != da numero di righe
 // OK mappa chiusa : tutti i bordi devono avere 1
@@ -6,11 +5,12 @@
 // OK 1 exit (E), almeno 1 collectible (C), 1 starting position (P)
 #include "so_long.h"
 
-static int is_rectangular(t_map *map) // verifica se il numero di righe è diverso dal numero di colonne, e che tutte le righe abbiano la stessa lunghezza
+// verifica se il numero di righe è diverso dal numero di colonne, e che tutte le righe abbiano la stessa lunghezza
+static int is_rectangular(t_map *map) 
 {
     int i;
     int len_row;
-    int num_rows = 0; // Contatore per il numero di righe
+    int num_rows = 0;
 
     i = 0;
     len_row = ft_strlen(map->map[i]);
@@ -20,13 +20,14 @@ static int is_rectangular(t_map *map) // verifica se il numero di righe è diver
             return (ft_printf("Error\nMappa non valida"), -1);
         i++;
     }
-    num_rows++;              // Incrementa il contatore per ogni riga
-    if (num_rows == len_row) // Controlla se il numero di righe è uguale alla lunghezza di una riga
+    num_rows++;             
+    if (num_rows == len_row) 
         return (ft_printf("Error\nMappa non rettangolare"), -1);
     return (0);
 }
 
-static int is_closed(char **map) // controlla se la matrice ha 1 lungo tutti i bordi
+// controlla se la matrice ha 1 lungo tutti i bordi
+static int is_closed(char **map) 
 {
     int i;
     int len_row;
@@ -53,6 +54,7 @@ static int is_closed(char **map) // controlla se la matrice ha 1 lungo tutti i b
     }
     return (0);
 }
+// check numero di P, E, numero collezionabili e li salva nella struct 
 static int parsing_map(t_map *map)
 {
     int i;
@@ -66,23 +68,23 @@ static int parsing_map(t_map *map)
     while (map->map[i] != NULL)
     {
         j = 0;
-        while (map->map [[i] [j]])
+        while (map->map[i][j])
         {
-            if (map->map[i][j] == P)
+            if (map->map[i][j] == 'P')
             {
                 if (!p_counter)
                     p_counter += 1;
                 else
                     return (1);
             }
-            if (map->map[i][j] == E)
+            if (map->map[i][j] == 'E')
             {
                 if (!e_counter)
                     e_counter += 1;
                 else
                     return (1);
             }
-            if (map->map[i][j] == C)
+            if (map->map[i][j] == 'C')
                 map->collect++;
             j++;
         }
