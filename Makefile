@@ -1,5 +1,5 @@
 NAME = so_long
-CFLAGS = -g -gdwarf-4 -O0 -I./include -Imlx
+CFLAGS = -gdwarf-4 -O0 -I./include -Imlx -fsanitize=address
 
 
 MINILIBX_PATH = ./mlx
@@ -14,6 +14,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 $(NAME): $(OBJ) $(MINILIBX) $(LIBFT)
 	gcc $(OBJ) $(CFLAGS) $(LIBFT) $(MINILIBX) mlx/libmlx.a -L./mlx -lmlx_Linux -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
+	
 clean:
 	rm -f $(OBJ)
 	make -C $(MINILIBX_PATH) clean
