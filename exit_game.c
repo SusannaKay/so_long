@@ -46,13 +46,3 @@ void exit_game(t_map *map, const char *error_message)
 
     exit(EXIT_SUCCESS);
 }
-// {
-//         if (error_message)
-//             ft_printf("Errore: %s\n", error_message);
-//         free_map(map);
-//         mlx_destroy_window(map->mlx, map->win);
-//         mlx_destroy_display(map->mlx);
-        
-//         exit(EXIT_SUCCESS);
-//         return;
-// }
