@@ -97,5 +97,6 @@ int verify_map(t_map *map)
 {
     if(is_rectangular(map) < 0 || is_closed(map->map) < 0 || parsing_map(map) < 0)
         return (exit_game(map, NULL), -1);
-    return (ft_printf("mappa valida\n"), 0);
+    flood_fill(map);
+    return(0);
 }
