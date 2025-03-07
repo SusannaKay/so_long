@@ -1,8 +1,12 @@
+// OK mappa rettangolare
+// OK tutte le righe della stessa lunghezza, lunghezza != da numero di righe
+// OK mappa chiusa : tutti i bordi devono avere 1
 // mappa con una soluzione: collectibles accessibili, uscita accessibile : almeno una posizione attorno al carattere, deve essere 0
+// OK 1 exit (E), almeno 1 collectible (C), 1 starting position (P)
 #include "so_long.h"
 
 // verifica se il numero di righe è diverso dal numero di colonne, e che tutte le righe abbiano la stessa lunghezza
-static int is_rectangular(t_map *map) 
+static int is_rectangular(t_map *map)
 {
     int i;
     int len_row;
@@ -16,14 +20,14 @@ static int is_rectangular(t_map *map)
             return (ft_printf("Error\nMappa non valida"), -1);
         i++;
     }
-    num_rows++;             
-    if (num_rows == len_row) 
+    num_rows++;
+    if (num_rows == len_row)
         return (ft_printf("Error\nMappa non rettangolare"), -1);
     return (0);
 }
 
 // controlla se la matrice ha 1 lungo tutti i bordi
-static int is_closed(char **map) 
+static int is_closed(char **map)
 {
     int i;
     int len_row;
@@ -44,14 +48,13 @@ static int is_closed(char **map)
                 return (ft_printf("Error\nMappa aperta"), -1);
             len_row++;
         }
-        if (map[i][0] != '1' || map[i][ft_strlen(map[i]) - 1] != '1')
+        if (map[i][0] != '1' && map[i][ft_strlen(map[i]) - 1] != '1')
             return (ft_printf("Error\nMappa aperta"), -1);
         i++;
     }
     return (0);
 }
-
-// check numero di P, E, numero collezionabili e li salva nella struct 
+// check numero di P, E, numero collezionabili e li salva nella struct
 static int parsing_map(t_map *map)
 {
     int i;
@@ -62,7 +65,6 @@ static int parsing_map(t_map *map)
     i = 0;
     p_counter = 0;
     e_counter = 0;
-    map->collect = 0;
     while (map->map[i] != NULL)
     {
         j = 0;
@@ -73,35 +75,28 @@ static int parsing_map(t_map *map)
                 if (!p_counter)
                     p_counter += 1;
                 else
-                    return (ft_printf("Troppi player.\n"), 1);
+                    return (1);
             }
             if (map->map[i][j] == 'E')
             {
                 if (!e_counter)
                     e_counter += 1;
                 else
-                    return (ft_printf("Troppe exit.\n"), 1);
+                    return (1);
             }
             if (map->map[i][j] == 'C')
-                {
-                    map->collect++;
-                    ft_printf("Trovato C in [%d, %d], totale: %d\n", i, j, map->collect);
-                }
+                map->collect++;
             j++;
         }
         i++;
     }
-    return(0);
 }
 
 int verify_map(t_map *map)
 {
-    if(is_rectangular(map) == 0)
-        ft_printf("la mappa e' rettangolare.\n");
-    if(is_closed(map->map) == 0)
-        ft_printf("la mappa e' chiusa.\n");
+    is_rectangular(map);
+    is_closed(map->map);
+    parsing_map(map);
 
-    if(parsing_map(map) == 0)
-        return (ft_printf("Collectibles number: %d\n", map->collect), 0);
     return (ft_printf("mappa valida"), 0);
 }
