@@ -15,12 +15,22 @@ static void init_player(t_player *player)
     player->x = 0;
     player->y = 0;
 }
-static void init_window(t_mlx *data)
+
+t_map *create_tmap(void)
 {
-    data->mlx = NULL;
-    data->win = NULL;
+    t_map *map;
+    map = malloc(sizeof(t_map));
+    if (!map)
+        return (NULL);
+    init_map(map);
+    return (map);
 }
-int create_struct()
+t_player *create_tplayer(void);
 {
-    
+    t_player *player;
+    player = malloc(sizeof(t_player));
+    if (!player)
+        return (NULL);
+    init_player(map);
+    return (player);
 }
