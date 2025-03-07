@@ -18,10 +18,6 @@ void free_map(t_map *map)
     }
     if (map->filename)
         free(map->filename);
-    if (map->mlx)
-        free(map->mlx);
-    if (map->win)
-        free(map->win);
     free(map);
 }
 
@@ -30,9 +26,10 @@ void exit_game(t_map *map, const char *error_message)
 {
         if (error_message)
             ft_printf("Errore: %s\n", error_message);
+        free_map(map);
         mlx_destroy_window(map->mlx, map->win);
         mlx_destroy_display(map->mlx);
-        free_map(map);
+        
         exit(EXIT_SUCCESS);
         return;
 }
