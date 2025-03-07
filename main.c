@@ -1,45 +1,42 @@
 #include "so_long.h"
-// TO DO: function to create and init structs 
+// TO DO: function to create and init structs
 // TO DO: function to free the structs
-// TO DO: add close function with mouse ( + check for seg fault ) 
+// TO DO: add close function with mouse ( + check for seg fault )
 
-static void create_window(t_mlx *data, t_map *map)
+static void create_window(t_map *map)
 {
-    data->mlx = mlx_init();
-    if (!data->mlx)
+    map->mlx = mlx_init();
+    if (!map->mlx)
     {
-        free(data);
         free(map);
     }
-    data->win = mlx_new_window(data->mlx, 1920, 1080, "So Long");
-    if (!data->win)
+    map->win = mlx_new_window(map->mlx, 1920, 1080, "So Long");
+    if (!map->win)
     {
-        free(data->mlx);
-        free(data);
+        free(map->mlx);
         free(map);
     }
 }
-static int close_win(int keysym, t_mlx *data)
+static int close_win(int keysym, t_map *map)
 {
     if (keysym == XK_Escape)
     {
-        mlx_destroy_window(data->mlx, data->win);
-        mlx_destroy_display(data->mlx);
+        mlx_destroy_window(map->mlx, map->win);
+        mlx_destroy_display(map->mlx);
     }
-    free(data);
+    free(map);
     exit(EXIT_SUCCESS);
 }
-static void create_loop(t_mlx *data)
+static void create_loop(t_map *map)
 {
-    mlx_hook(data->win, KeyPress, KeyPressMask, close_win, data);
-    mlx_mouse_hook(data->win, close_win, data);
-    mlx_loop(data->mlx);
-    free(data->mlx);
-    free(data);
+    mlx_hook(map->win, KeyPress, KeyPressMask, close_win, map);
+    mlx_mouse_hook(map->win, close_win, map);
+    mlx_loop(map->mlx);
+    free(map->mlx);
+    free(map);
 }
 int main(int argc, char *argv[])
 {
-    t_mlx *data;
     t_map *map;
 
     if (argc == 2)
@@ -55,14 +52,6 @@ int main(int argc, char *argv[])
         if (!map->filename)
         {
             ft_printf("libero map");
-            free(map);
-            return (0);
-        }
-
-        data = malloc(sizeof(t_mlx));
-        if (!data)
-        {
-            free(map->filename);
             free(map);
             return (0);
         }

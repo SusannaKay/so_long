@@ -28,11 +28,15 @@ void free_map(t_map *map)
         free(player);
     }
 
-    void exit_game(t_map * map, t_player * player, const char *error_message)
+    void exit_game(t_map * map, t_player * player, char *error_message)
     {
         if (error_message)
             ft_printf("Errore: %s\n", error_message);
+        mlx_destroy_window(map->mlx, map->win);
+        mlx_destroy_display(map->mlx);
+        free(map->mlx);
         free_map(map);
         free_player(player);
-        exit(1);
+        exit(EXIT_SUCCESS);
+        return (0);
     }
