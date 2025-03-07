@@ -4,6 +4,8 @@ static void init_map(t_map *map)
 {
     map->filename = NULL;
     map->map = NULL;
+    map->mlx = NULL;
+    map->win = NULL;
     map->len_row = 0;
     map->rows = 0;
     map->collect = 0;

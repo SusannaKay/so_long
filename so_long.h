@@ -33,6 +33,8 @@ typedef struct s_map
     int len_row;
     int rows;
     int collect;
+    void *mlx;
+    void *win;
 } t_map;
 
 int verify_map(t_map *map);
