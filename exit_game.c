@@ -1,5 +1,4 @@
 #include "so_long.h"
-#include <stdlib.h>
 
 void free_map(t_map *map)
 {
@@ -19,24 +18,21 @@ void free_map(t_map *map)
     }
     if (map->filename)
         free(map->filename);
+    if (map->mlx)
+        free(map->mlx);
+    if (map->win)
+        free(map->win);
     free(map);
+}
 
-    void free_player(t_player * player)
-    {
-        if (!player)
-            return;
-        free(player);
-    }
 
-    void exit_game(t_map * map, t_player * player, char *error_message)
-    {
+void exit_game(t_map *map, const char *error_message)
+{
         if (error_message)
             ft_printf("Errore: %s\n", error_message);
         mlx_destroy_window(map->mlx, map->win);
         mlx_destroy_display(map->mlx);
-        free(map->mlx);
         free_map(map);
-        free_player(player);
         exit(EXIT_SUCCESS);
-        return (0);
-    }
+        return;
+}

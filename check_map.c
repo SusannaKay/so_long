@@ -1,8 +1,4 @@
-// OK mappa rettangolare
-// OK tutte le righe della stessa lunghezza, lunghezza != da numero di righe
-// OK mappa chiusa : tutti i bordi devono avere 1
 // mappa con una soluzione: collectibles accessibili, uscita accessibile : almeno una posizione attorno al carattere, deve essere 0
-// OK 1 exit (E), almeno 1 collectible (C), 1 starting position (P)
 #include "so_long.h"
 
 // verifica se il numero di righe è diverso dal numero di colonne, e che tutte le righe abbiano la stessa lunghezza
@@ -48,7 +44,7 @@ static int is_closed(char **map)
                 return (ft_printf("Error\nMappa aperta"), -1);
             len_row++;
         }
-        if (map[i][0] != '1' && map[i][ft_strlen(map[i]) - 1] != '1')
+        if (map[i][0] != '1' || map[i][ft_strlen(map[i]) - 1] != '1')
             return (ft_printf("Error\nMappa aperta"), -1);
         i++;
     }
@@ -73,16 +69,21 @@ static int parsing_map(t_map *map)
             if (map->map[i][j] == 'P')
             {
                 if (!p_counter)
-                    p_counter += 1;
+                    {
+                        p_counter += 1;
+                        map->p_x = j;
+                        map->p_y = i;
+                    }
+                    
                 else
-                    return (1);
+                    return (ft_printf("Troppi player.\n"), 1);
             }
             if (map->map[i][j] == 'E')
             {
                 if (!e_counter)
                     e_counter += 1;
                 else
-                    return (1);
+                    return (ft_printf("Troppe exit.\n"), 1);
             }
             if (map->map[i][j] == 'C')
                 map->collect++;
@@ -90,6 +91,7 @@ static int parsing_map(t_map *map)
         }
         i++;
     }
+    return(0);
 }
 
 int verify_map(t_map *map)
@@ -97,6 +99,7 @@ int verify_map(t_map *map)
     is_rectangular(map);
     is_closed(map->map);
     parsing_map(map);
+
 
     return (ft_printf("mappa valida"), 0);
 }

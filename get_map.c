@@ -86,5 +86,6 @@ void read_map(t_map *map)
         ft_printf("matrice creata correttamente\n");
     if(fill_map(map) >0 )
         ft_printf("Mappa duplicata correttamente\n");
+    
     return;
 }
