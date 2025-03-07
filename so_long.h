@@ -30,6 +30,6 @@ typedef struct s_map
 int verify_map(t_map *map);
 void read_map(t_map *map);
 t_map *create_tmap(t_map *map);
-void exit_game(t_map *map, const char *error_message);
+int exit_game(t_map *map, const char *error_message);
 int flood_fill(t_map *map);
 #endif

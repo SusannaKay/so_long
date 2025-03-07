@@ -27,10 +27,12 @@ void free_map(t_map *map)
 }
 
 
-void exit_game(t_map *map, const char *error_message)
+int exit_game(t_map *map, const char *error_message)
 {
+    if(ft_strncmp(error_message, "!", ft_strlen(error_message)) == 0)
+       error_message = NULL;
     if (error_message)
-        ft_printf("Errore: %s\n", error_message);
+        ft_printf("Error: %s\n", error_message);
 
     if (map)
     {
@@ -40,9 +42,8 @@ void exit_game(t_map *map, const char *error_message)
 
         if (map->mlx)
             mlx_destroy_display(map->mlx);
-        free_map(map);
-        
+        free_map(map);       
     }
-
     exit(EXIT_SUCCESS);
+    return(0);
 }

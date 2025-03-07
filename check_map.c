@@ -1,4 +1,3 @@
-// mappa con una soluzione: collectibles accessibili, uscita accessibile : almeno una posizione attorno al carattere, deve essere 0
 #include "so_long.h"
 
 // verifica se il numero di righe è diverso dal numero di colonne, e che tutte le righe abbiano la stessa lunghezza
