@@ -73,17 +73,16 @@ static int parsing_map(t_map *map)
                         p_counter += 1;
                         map->p_x = j;
                         map->p_y = i;
-                    }
-                    
+                    }             
                 else
-                    return (ft_printf("Troppi player.\n"), 1);
+                    return (ft_printf("Error\nToo many P"), -1);
             }
             if (map->map[i][j] == 'E')
             {
                 if (!e_counter)
                     e_counter += 1;
                 else
-                    return (ft_printf("Troppe exit.\n"), 1);
+                    return (ft_printf("Error\nToo many E"), -1);
             }
             if (map->map[i][j] == 'C')
                 map->collect++;
@@ -96,10 +95,7 @@ static int parsing_map(t_map *map)
 
 int verify_map(t_map *map)
 {
-    is_rectangular(map);
-    is_closed(map->map);
-    parsing_map(map);
-
-
-    return (ft_printf("mappa valida"), 0);
+    if(is_rectangular(map) < 0 || is_closed(map->map) < 0 || parsing_map(map) < 0)
+        return (exit_game(map, NULL), -1);
+    return (ft_printf("mappa valida\n"), 0);
 }
