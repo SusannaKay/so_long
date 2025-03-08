@@ -14,10 +14,11 @@ static int close_win(int keysym, t_map *map)
 {
     if (keysym == XK_Escape)
         exit_game(map, "Quit program");
-    return(0);
+    return (0);
 }
 static void create_loop(t_map *map)
 {
+    mlx_hook(map->win, KeyPress, KeyPressMask, move_player, map);
     mlx_hook(map->win, KeyPress, KeyPressMask, close_win, map);
     mlx_hook(map->win, 17, 0L, exit_game, map);
     mlx_loop(map->mlx);
@@ -32,7 +33,7 @@ int main(int argc, char *argv[])
             return (ft_printf("Error\n formato mappa non valido"), 1);
 
         map = create_tmap(map);
-        map ->filename = ft_strjoin("maps/", argv[1]);
+        map->filename = ft_strjoin("maps/", argv[1]);
         if (!map->filename)
             exit_game(map, "Filename non trovato");
         read_map(map);

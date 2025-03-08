@@ -6,7 +6,6 @@
 
 #include <X11/keysym.h>
 #include <X11/X.h>
-
 #include <stddef.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -32,4 +31,5 @@ void read_map(t_map *map);
 t_map *create_tmap(t_map *map);
 int exit_game(t_map *map, const char *error_message);
 int flood_fill(t_map *map);
+int move_player(int keysym, t_map *map);
 #endif
