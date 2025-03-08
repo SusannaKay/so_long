@@ -26,6 +26,15 @@ typedef struct s_map
     int score;
 } t_map;
 
+typedef struct s_graphics
+{
+    void *player;
+    void *floor;
+    void *wall;
+    void *exit;
+    void *collect;
+} t_graphics;
+
 int verify_map(t_map *map);
 void read_map(t_map *map);
 t_map *create_tmap(t_map *map);

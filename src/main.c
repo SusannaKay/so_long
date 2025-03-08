@@ -1,5 +1,4 @@
 #include "so_long.h"
-// TO DO: add close function with mouse ( + check for seg fault )
 
 static void create_window(t_map *map)
 {
