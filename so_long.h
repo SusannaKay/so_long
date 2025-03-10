@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
+#define TILESIZE 30
 typedef struct s_map
 {
     char *filename;

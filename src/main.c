@@ -5,7 +5,7 @@ static void create_window(t_map *map)
     map->mlx = mlx_init();
     if (!map->mlx)
         free(map);
-    map->win = mlx_new_window(map->mlx, 1920, 1080, "So Long");
+    map->win = mlx_new_window(map->mlx, TILESIZE * map->rows, TILESIZE * map->len_row, "So Long");
     if (!map->win)
         exit_game(map, "Finestra non creata");
 }
