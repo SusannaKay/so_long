@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "../so_long.h"
 
 static void init_map(t_map *map)
 {
@@ -15,7 +15,7 @@ static void init_map(t_map *map)
     map->p_x = 0;
     map->p_y = 0;
 }
-static void init_graphcs(t_graphics *graphics)
+static void init_graphics(t_graphics *graphics)
 {
     graphics->collect = NULL;
     graphics->player = NULL;
