@@ -1,5 +1,5 @@
 NAME = so_long
-CFLAGS = -gdwarf-4 -O0 -I./include -Imlx -fsanitize=address
+CFLAGS = -g -gdwarf-4 -O0 -I./include -Imlx
 
 
 MINILIBX_PATH = ./mlx
@@ -8,13 +8,7 @@ MINILIBX = $(MINILIBX_PATH)/libmlx.a
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
-SRC = src/main.c \
-		src/get_map.c \
-		src/check_map.c \
-		src/init_struct.c \
-		src/exit_game.c \
-		src/flood_fill.c \
-		src/move_player.c \
+SRC =	src/main.c src/get_map.c src/check_map.c src/init_struct.c src/exit_game.c src/flood_fill.c src/graphics.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
