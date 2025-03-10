@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "../so_long.h"
 
 // verifica se il numero di righe è diverso dal numero di colonne, e che tutte le righe abbiano la stessa lunghezza
 static int is_rectangular(t_map *map)
