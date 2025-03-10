@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "../so_long.h"
 
 static void free_map(t_map *map)
 {
@@ -19,45 +19,24 @@ static void free_map(t_map *map)
         map->map = NULL;
     }
     if (map->filename)
-    {
         free(map->filename);
-        map->filename = NULL;
-    }
     if (map->graphics)
-    {
         free(map->graphics);
-        map->graphics = NULL;
-    }
     free(map);
 }
 
-static void free_graphics(t_graphics *graphics)
+static void free_graphics(t_map *map)
 {
-    if (graphics->collect = NULL)
-    {
-        free(graphics->collect);
-        graphics->collect = NULL;
-    }
-    if (graphics->player)
-    {
-        free(graphics->player);
-        graphics->player = NULL;
-    }
-    if (graphics->floor)
-    {
-        free(graphics->floor);
-        graphics->floor = NULL;
-    }
-    if (graphics->wall)
-    {
-        free(graphics->wall);
-        graphics->wall = NULL;
-    }
-    if (graphics->exit)
-    {
-        free(graphics->exit);
-        graphics->exit = NULL;
-    }
+    if (map->graphics->collect)
+        mlx_destroy_image(map->mlx, map->graphics->collect);
+    if (map->graphics->player)
+        mlx_destroy_image(map->mlx, map->graphics->player);
+    if (map->graphics->floor)
+    mlx_destroy_image(map->mlx, map->graphics->floor);
+    if (map->graphics->wall)
+        mlx_destroy_image(map->mlx, map->graphics->wall);
+    if (map->graphics->exit)
+        mlx_destroy_image(map->mlx, map->graphics->exit);
 }
 
 int exit_game(t_map *map, const char *error_message)
@@ -66,15 +45,18 @@ int exit_game(t_map *map, const char *error_message)
         error_message = NULL;
     if (error_message)
         ft_printf("Error: %s\n", error_message);
-
+    free_graphics(map);
+    mlx_loop_end(map->mlx);
     if (map)
     {
         if (map->mlx && map->win)
             mlx_destroy_window(map->mlx, map->win);
-
         if (map->mlx)
-            mlx_destroy_display(map->mlx);
-        free_graphics(map->graphics);
+            {
+                mlx_destroy_display(map->mlx);
+                free(map->mlx);
+                map->mlx = NULL;
+            }  
         free_map(map);
     }
     exit(EXIT_SUCCESS);
