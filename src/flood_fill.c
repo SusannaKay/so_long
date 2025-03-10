@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "../so_long.h"
 static void free_matrix(char **matrix)
 { 
     int i;
@@ -13,6 +13,8 @@ static void free_matrix(char **matrix)
 }
 static void fill_char(char **matrix, int x, int y, t_map *map)
 {
+    if (x < 0 || y < 0 || x >= map->len_row || y >= map->rows) 
+        return;
     if(( matrix[y][x] == '1'|| matrix[y][x] == 'F' ))
         return;
     
@@ -70,12 +72,15 @@ int flood_fill(t_map *map)
     }
     matrix[i] = NULL;
     ft_printf("Flooding map...\n");
+    ft_printf("Starting fill_char at (%d, %d)\n", map->p_x, map->p_y);
     fill_char(matrix, map->p_x, map->p_y, map);
+    ft_printf("Flood complete\n");
     if(check_matrix(matrix) < 0)
     {
         exit_game(map,"Path is not valid\n");
         return(-1);
     }
     free_matrix(matrix);
+    ft_printf("Matrix Freed\n");
     return(0);
 }
