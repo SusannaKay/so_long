@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void free_map(t_map *map)
+static void free_map(t_map *map)
 {
     int i;
 
@@ -23,7 +23,41 @@ void free_map(t_map *map)
         free(map->filename);
         map->filename = NULL;
     }
+    if (map->graphics)
+    {
+        free(map->graphics);
+        map->graphics = NULL;
+    }
     free(map);
+}
+
+static void free_graphics(t_graphics *graphics)
+{
+    if (graphics->collect = NULL)
+    {
+        free(graphics->collect);
+        graphics->collect = NULL;
+    }
+    if (graphics->player)
+    {
+        free(graphics->player);
+        graphics->player = NULL;
+    }
+    if (graphics->floor)
+    {
+        free(graphics->floor);
+        graphics->floor = NULL;
+    }
+    if (graphics->wall)
+    {
+        free(graphics->wall);
+        graphics->wall = NULL;
+    }
+    if (graphics->exit)
+    {
+        free(graphics->exit);
+        graphics->exit = NULL;
+    }
 }
 
 int exit_game(t_map *map, const char *error_message)
@@ -35,12 +69,12 @@ int exit_game(t_map *map, const char *error_message)
 
     if (map)
     {
-
         if (map->mlx && map->win)
             mlx_destroy_window(map->mlx, map->win);
 
         if (map->mlx)
             mlx_destroy_display(map->mlx);
+        free_graphics(map->graphics);
         free_map(map);
     }
     exit(EXIT_SUCCESS);

@@ -25,6 +25,7 @@ static void create_loop(t_map *map)
 int main(int argc, char *argv[])
 {
     t_map *map;
+    t_graphics *graphics;
 
     if (argc == 2)
     {
@@ -37,6 +38,8 @@ int main(int argc, char *argv[])
             exit_game(map, "Filename non trovato");
         read_map(map);
         verify_map(map);
+        graphics = create_tgraphics(graphics);
+        map->graphics = graphics;
         create_window(map);
         create_loop(map);
         return (0);

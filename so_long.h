@@ -17,6 +17,7 @@ typedef struct s_map
     char **map;
     void *mlx;
     void *win;
+    struct s_graphics *graphics;
     int len_row;
     int rows;
     int collect;
@@ -38,6 +39,7 @@ typedef struct s_graphics
 int verify_map(t_map *map);
 void read_map(t_map *map);
 t_map *create_tmap(t_map *map);
+t_graphics *create_tgraphics(t_graphics *graphics);
 int exit_game(t_map *map, const char *error_message);
 int flood_fill(t_map *map);
 int move_player(int keysym, t_map *map);
