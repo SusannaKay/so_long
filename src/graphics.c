@@ -8,29 +8,22 @@ static void set_images(t_map *map)
     map->graphics->player = mlx_xpm_file_to_image(map->mlx, "graphics/front0.xpm", &img_size, &img_size);
         if (!map->graphics->player)
             exit_game(map, "Image Player not loaded.");
-
 map->graphics->floor = mlx_xpm_file_to_image(map->mlx, "graphics/floor.xpm", &img_size, &img_size);
 if (!map->graphics->floor)
     exit_game(map, "Image Floor not loaded.");
-
 map->graphics->wall = mlx_xpm_file_to_image(map->mlx, "graphics/wall.xpm", &img_size, &img_size);
 if (!map->graphics->wall)
     exit_game(map, "Image Wall not loaded.");
-
-if (!map->graphics->exit)
-    exit_game(map, "Image Exit not loaded.");
-
 map->graphics->collect = mlx_xpm_file_to_image(map->mlx, "graphics/collect.xpm", &img_size, &img_size);
 if (!map->graphics->collect)
     exit_game(map, "Image Collect not loaded.");
-    
-if (map->score == map->collect)
+// if (map->score == map->collect)
     map->graphics->exit = mlx_xpm_file_to_image(map->mlx, "graphics/exit.xpm", &img_size, &img_size);
+    if (!map->graphics->exit)
+    exit_game(map, "Image Exit not loaded.");
     // funzione exit game
-else
-    map->graphics->exit = mlx_xpm_file_to_image(map->mlx, "graphics/floor.xpm", &img_size, &img_size);
-
-
+// else
+//     map->graphics->exit = mlx_xpm_file_to_image(map->mlx, "graphics/floor.xpm", &img_size, &img_size);
 }
 static void put_image(t_map *map, void *image, int x, int y)
 {

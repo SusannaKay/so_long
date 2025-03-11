@@ -9,16 +9,18 @@ static void create_window(t_map *map)
     if (!map->win)
         exit_game(map, "Finestra non creata");
 }
-static int close_win(int keysym, t_map *map)
+static int key_down(int keysym, t_map *map)
 {
     if (keysym == XK_Escape)
         exit_game(map, "Quit program");
+    else
+        move_player(keysym, map);
+        
     return (0);
 }
 static void create_loop(t_map *map)
-{
-    //mlx_hook(map->win, KeyPress, KeyPressMask, move_player, map);
-    mlx_hook(map->win, KeyPress, KeyPressMask, close_win, map);
+{ 
+    mlx_hook(map->win, KeyPress, KeyPressMask, key_down, map);
     mlx_hook(map->win, 17, 0L, exit_game, map);
     mlx_loop(map->mlx);
 }

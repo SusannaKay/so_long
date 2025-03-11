@@ -8,7 +8,7 @@ MINILIBX = $(MINILIBX_PATH)/libmlx.a
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
-SRC =	src/main.c src/get_map.c src/check_map.c src/init_struct.c src/exit_game.c src/flood_fill.c src/graphics.c
+SRC =	src/main.c src/get_map.c src/check_map.c src/init_struct.c src/exit_game.c src/flood_fill.c src/graphics.c src/move_player.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

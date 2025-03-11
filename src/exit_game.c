@@ -44,7 +44,7 @@ int exit_game(t_map *map, const char *error_message)
     if (ft_strncmp(error_message, "!", ft_strlen(error_message)) == 0)
         error_message = NULL;
     if (error_message)
-        ft_printf("Error: %s\n", error_message);
+        ft_printf("%s\n", error_message);
     free_graphics(map);
     mlx_loop_end(map->mlx);
     if (map)

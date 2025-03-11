@@ -13,10 +13,10 @@
 #include <stdio.h>
 
 #define TILESIZE 64
-#define UP 25
-#define DOWN 39
-#define LEFT 38
-#define RIGHT 40
+#define UP 119
+#define DOWN 115
+#define LEFT 97
+#define RIGHT 100
 
 typedef struct s_map
 {
@@ -50,6 +50,7 @@ t_graphics *create_tgraphics(t_graphics *graphics);
 int exit_game(t_map *map, const char *error_message);
 int flood_fill(t_map *map);
 void render_map(t_map *map);
+int move_player(int keycode, t_map *map);
 #endif
 
 //valgrind -s --leak-check=full --show-leak-kinds=all
