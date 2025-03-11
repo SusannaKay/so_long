@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
             {ft_printf("graphics e' null");
             return(0);}
         create_window(map);
-        render_map(map);
+        render_map(map, 0);
         create_loop(map);
         return (0);
     }

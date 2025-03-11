@@ -31,13 +31,14 @@ static void put_image(t_map *map, void *image, int x, int y)
         exit_game(map, "Image not loaded.");
     mlx_put_image_to_window(map->mlx, map->win, image, (x * TILESIZE), (y * TILESIZE));
 }
-void render_map(t_map *map)
+void render_map(t_map *map, int n)
 {
     int x;
     int y;
 
     x = 0;
-    set_images(map);
+    if(n == 0)
+        set_images(map);
     while(map->map[y])
     {
         x = 0;

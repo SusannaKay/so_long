@@ -49,7 +49,7 @@ t_map *create_tmap(t_map *map);
 t_graphics *create_tgraphics(t_graphics *graphics);
 int exit_game(t_map *map, const char *error_message);
 int flood_fill(t_map *map);
-void render_map(t_map *map);
+void render_map(t_map *map, int n);
 int move_player(int keycode, t_map *map);
 #endif
 
