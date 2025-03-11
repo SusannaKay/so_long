@@ -16,7 +16,9 @@ int move_player(int keysym, t_map *map)
     if (keysym == RIGHT)
         new_x += 1;
     if (map->map[new_y][new_x] == 'E' && map->score == map->collect)
-            return (exit_game(map, "You win!\n"), 0);
+        return (exit_game(map, "You win!\n"), 0);
+    if (map->map[new_y][new_x] == 'A')
+        return (exit_game(map, "You Loose!\n"), 0);
     else if (map->map[new_y][new_x] == 'E' && map->score != map->collect)
         ft_printf("You must collect all the cookies!\n");
     if (map->map[new_y][new_x] != '1' && map->map[new_y][new_x] != 'E')  

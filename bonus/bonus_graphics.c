@@ -53,7 +53,7 @@ void render_map(t_map *map, int n)
                 put_image(map, map->graphics->exit, x, y);
             if(map->map[y][x] == 'P')
                 put_image(map, map->graphics->player, x, y);
-            if(map->map[y][x] == 'E')
+            if(map->map[y][x] == 'A')
                 put_image(map, map->graphics->enemy, x, y);
             x++;
         }

@@ -1,8 +1,8 @@
 #ifndef SO_LONG_H
 #define SO_LONG_H
 
-#include "./mlx/mlx.h"
-#include "./libft/libft.h"
+#include "../mlx/mlx.h"
+#include "../libft/libft.h"
 
 #include <X11/keysym.h>
 #include <X11/X.h>
