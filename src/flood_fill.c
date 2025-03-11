@@ -59,25 +59,24 @@ int flood_fill(t_map *map)
     i = 0;
     matrix = malloc((map->rows + 1) * sizeof(char *));
     if (!matrix)
-        return exit_game(map, "Flood fill matrix allocation failed."), -1;
+        return exit_game(map, "Error:\nFlood fill matrix allocation failed."), -1;
     while (i < map->rows)
     {
         matrix[i] = ft_strdup(map->map[i]);
         if(!matrix[i])
         {
             free_matrix(matrix);
-            return(exit_game(map, "Flood fill matrix allocation failed."), -1);
+            return(exit_game(map, "Error:\nFlood fill matrix allocation failed."), -1);
         }
         i++;
     }
     matrix[i] = NULL;
     ft_printf("Flooding map...\n");
-    ft_printf("Starting fill_char at (%d, %d)\n", map->p_x, map->p_y);
     fill_char(matrix, map->p_x, map->p_y, map);
     ft_printf("Flood complete\n");
     if(check_matrix(matrix) < 0)
     {
-        exit_game(map,"Path is not valid\n");
+        exit_game(map,"Error:\nPath is not valid\n");
         return(-1);
     }
     free_matrix(matrix);

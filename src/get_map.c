@@ -68,12 +68,6 @@ static char **fill_map(t_map *map)
     }
     map->map[i] = NULL;
     i = 0;
-    ft_printf("Stampo la mappa:\n");
-    while(map->map[i])
-    {
-        ft_printf("%s\n", map->map[i]);
-        i++;
-    }
     close(fd);
     return (map->map);
 }
