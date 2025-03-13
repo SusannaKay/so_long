@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:32:59 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/13 11:39:58 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/13 21:12:01 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,23 @@ int move_player(int keysym, t_map *map)
 
     new_x = map->p_x;
     new_y = map->p_y;
-    if (keysym == UP)
-        new_y -= 1;
-    if (keysym == DOWN)
-        new_y += 1;
-    if (keysym == LEFT)
-        new_x -= 1;
-    if (keysym == RIGHT)
-        new_x += 1;
-        if(check_moves(map, new_x, new_y));
-        {ft_printf("Moves number: %d\n", map->moves);
-        map->p_x = new_x;
-        map->p_y = new_y;
-        return(render_map(map, 1),0);}
-    
+    if (keysym == UP || keysym == DOWN || keysym == LEFT || keysym == RIGHT)
+    {
+        if (keysym == UP)
+            new_y -= 1;
+        if (keysym == DOWN)
+            new_y += 1;
+        if (keysym == LEFT)
+            new_x -= 1;
+        if (keysym == RIGHT)
+            new_x += 1;
+        if (check_moves(map, new_x, new_y))
+        {
+            ft_printf("Moves number: %d\n", map->moves);
+            map->p_x = new_x;
+            map->p_y = new_y;
+            return (render_map(map, 1), 0);
+        }
+    }
     return (1);
 }
