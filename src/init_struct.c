@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:32:51 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/13 10:32:52 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/13 11:29:42 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void init_graphics(t_graphics *graphics)
 }
 t_map *create_tmap(t_map *map)
 {
-
     map = malloc(sizeof(t_map));
     if (!map)
         return (NULL);

@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:32:18 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/13 10:32:19 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/13 19:38:10 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,36 +39,59 @@ static void free_map(t_map *map)
 
 static void free_graphics(t_map *map)
 {
-    if (map->graphics->collect)
-        mlx_destroy_image(map->mlx, map->graphics->collect);
-    if (map->graphics->player)
-        mlx_destroy_image(map->mlx, map->graphics->player);
-    if (map->graphics->floor)
-    mlx_destroy_image(map->mlx, map->graphics->floor);
-    if (map->graphics->wall)
-        mlx_destroy_image(map->mlx, map->graphics->wall);
-    if (map->graphics->exit)
-        mlx_destroy_image(map->mlx, map->graphics->exit);
+    if (map->graphics)
+    {
+        if (map->graphics->collect)
+        {
+            mlx_destroy_image(map->mlx, map->graphics->collect);
+            map->graphics->collect = NULL;
+        }
+        if (map->graphics->player)
+        {
+            mlx_destroy_image(map->mlx, map->graphics->player);
+            map->graphics->player = NULL;
+        }
+        if (map->graphics->floor)
+        {
+            mlx_destroy_image(map->mlx, map->graphics->floor);
+            map->graphics->floor = NULL;
+        }
+        if (map->graphics->wall)
+        {
+            mlx_destroy_image(map->mlx, map->graphics->wall);
+            map->graphics->wall = NULL;
+        }
+        if (map->graphics->exit)
+        {
+            mlx_destroy_image(map->mlx, map->graphics->exit);
+            map->graphics->exit = NULL;
+        }
+    }
 }
 
 int exit_game(t_map *map, const char *error_message)
 {
-    if (ft_strncmp(error_message, "!", ft_strlen(error_message)) == 0)
-        error_message = NULL;
     if (error_message)
         ft_printf("%s\n", error_message);
-    free_graphics(map);
-    mlx_loop_end(map->mlx);
+    
     if (map)
     {
-        if (map->mlx && map->win)
-            mlx_destroy_window(map->mlx, map->win);
+        if (map->graphics)
+            free_graphics(map);
         if (map->mlx)
-            {
-                mlx_destroy_display(map->mlx);
-                free(map->mlx);
-                map->mlx = NULL;
-            }  
+            mlx_loop_end(map->mlx);
+        
+        if (map->mlx && map->win)
+        {
+            mlx_destroy_window(map->mlx, map->win);
+            map->win = NULL;
+        }
+        if (map->mlx)
+        {
+            mlx_destroy_display(map->mlx);
+            free(map->mlx);
+            map->mlx = NULL;
+        }
         free_map(map);
     }
     exit(EXIT_SUCCESS);

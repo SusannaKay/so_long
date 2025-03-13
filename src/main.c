@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:32:55 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/13 10:32:56 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/13 19:32:34 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static int key_down(int keysym, t_map *map)
         exit_game(map, "Quit program by user");
     else
         move_player(keysym, map);
-        
     return (0);
 }
 static void create_loop(t_map *map)
@@ -38,7 +37,7 @@ static void create_loop(t_map *map)
 }
 int main(int argc, char *argv[])
 {
-    t_map *map;
+    t_map       *map;
     t_graphics *graphics;
 
     if (argc == 2)
@@ -47,16 +46,25 @@ int main(int argc, char *argv[])
             return (ft_printf("Error\nFile format not valid, use .ber"), 1);
 
         map = create_tmap(map);
+        if (!map)
+            return (ft_printf("Error\nFailed to create map"), 1);
+
         map->filename = ft_strjoin("maps/", argv[1]);
         if (!map->filename)
             exit_game(map, "Error:\nFilename not found");
+
         read_map(map);
-        verify_map(map);
+        if (!map->map)
+            exit_game(map, "Error:\nFailed to read map");
+
+        if (verify_map(map) < 0)
+            return (1);
+
         graphics = create_tgraphics(graphics);
+        if (!graphics)
+            exit_game(map, "Error:\nFailed to create graphics");
+
         map->graphics = graphics;
-        if(!map->graphics)
-            {ft_printf("Error:\ngGraphics pointer is null");
-            return(0);}
         create_window(map);
         render_map(map, 0);
         create_loop(map);
