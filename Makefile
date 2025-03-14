@@ -9,7 +9,16 @@ LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
 SRC = src/main.c src/get_map.c src/check_map.c src/init_struct.c src/exit_game.c src/flood_fill.c src/graphics.c src/move_player.c
-SRC_BONUS = bonus/bonus_main.c bonus/bonus_get_map.c bonus/bonus_check_map.c bonus/bonus_init_struct.c bonus/bonus_exit_game.c bonus/bonus_flood_fill.c bonus/bonus_graphics.c bonus/bonus_move_player.c
+SRC_BONUS = bonus/bonus_main.c\
+ 			bonus/bonus_get_map.c\
+			bonus/bonus_check_map.c\
+			bonus/bonus_init_struct.c\
+			bonus/bonus_exit_game.c\
+			bonus/bonus_flood_fill.c\
+			bonus/bonus_graphics.c\
+			bonus/bonus_move_player.c\
+			bonus/bonus_display_moves.c\
+
 
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
