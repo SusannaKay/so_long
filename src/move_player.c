@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:32:59 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/14 13:23:34 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/14 14:16:47 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,32 @@ void update_position(int keysym, t_map *map, int *new_x, int *new_y)
 {
     *new_x = map->p_x;
     *new_y = map->p_y;
-
+    
+    if (map->graphics->player)
+    {
+        mlx_destroy_image(map->mlx, map->graphics->player);
+        map->graphics->player = NULL;
+    }
     if (keysym == UP)
+    {
         *new_y -= 1;
+        map->graphics->player = mlx_xpm_file_to_image(map->mlx, "graphics/back0.xpm", &map->tilesize, &map->tilesize);
+    }
     if (keysym == DOWN)
+    {
         *new_y += 1;
+        map->graphics->player = mlx_xpm_file_to_image(map->mlx, "graphics/front0.xpm", &map->tilesize, &map->tilesize);
+    }
     if (keysym == LEFT)
+    {
         *new_x -= 1;
+        map->graphics->player = mlx_xpm_file_to_image(map->mlx, "graphics/left0.xpm", &map->tilesize, &map->tilesize);
+    }
     if (keysym == RIGHT)
+    {
         *new_x += 1;
-
+        map->graphics->player = mlx_xpm_file_to_image(map->mlx, "graphics/right0.xpm", &map->tilesize, &map->tilesize);
+    }
 }
 
 int move_player(int keysym, t_map *map)
