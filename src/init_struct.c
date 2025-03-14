@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:32:51 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/13 11:29:42 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/14 13:43:46 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void init_map(t_map *map)
     map->score = 0;
     map->p_x = 0;
     map->p_y = 0;
+    map->tilesize = TILESIZE;
 }
 static void init_graphics(t_graphics *graphics)
 {
