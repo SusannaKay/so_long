@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:34:15 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/13 10:34:16 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/14 18:29:46 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_map
     int p_y;
     int moves;
     int score;
+    int tilesize;
 } t_map;
 
 typedef struct s_graphics
@@ -68,3 +69,4 @@ int move_player(int keycode, t_map *map);
 #endif
 
 //valgrind -s --leak-check=full --show-leak-kinds=all
+//valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./so_long map.ber 
