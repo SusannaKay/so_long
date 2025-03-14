@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:32:23 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/13 10:32:24 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/14 18:35:49 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,3 @@ int verify_map(t_map *map)
     flood_fill(map);
     return(0);
 }
-
-// ci sono errori con valgrind se la mappa non e' corretta
