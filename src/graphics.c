@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:32:43 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/13 11:42:04 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/14 13:29:06 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,15 @@ static void set_images(t_map *map)
     map->graphics->floor = mlx_xpm_file_to_image(map->mlx, "graphics/floor.xpm", &img_size, &img_size);
     if (!map->graphics->floor)
         exit_game(map, "Error:\nImage Floor not loaded.");
-map->graphics->wall = mlx_xpm_file_to_image(map->mlx, "graphics/wall.xpm", &img_size, &img_size);
-if (!map->graphics->wall)
-    exit_game(map, "Error:\nImage Wall not loaded.");
-map->graphics->collect = mlx_xpm_file_to_image(map->mlx, "graphics/collect.xpm", &img_size, &img_size);
-if (!map->graphics->collect)
-    exit_game(map, "Error:\nImage Collect not loaded.");
-// if (map->score == map->collect)
+    map->graphics->wall = mlx_xpm_file_to_image(map->mlx, "graphics/wall.xpm", &img_size, &img_size);
+    if (!map->graphics->wall)
+        exit_game(map, "Error:\nImage Wall not loaded.");
+    map->graphics->collect = mlx_xpm_file_to_image(map->mlx, "graphics/collect.xpm", &img_size, &img_size);
+    if (!map->graphics->collect)
+        exit_game(map, "Error:\nImage Collect not loaded.");
     map->graphics->exit = mlx_xpm_file_to_image(map->mlx, "graphics/exit.xpm", &img_size, &img_size);
     if (!map->graphics->exit)
     exit_game(map, "Error:\nImage Exit not loaded.");
-    // funzione exit game
-// else
-//     map->graphics->exit = mlx_xpm_file_to_image(map->mlx, "graphics/floor.xpm", &img_size, &img_size);
 }
 static void put_image(t_map *map, void *image, int x, int y)
 {
