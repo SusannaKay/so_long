@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 08:13:13 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/15 08:13:14 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/15 08:24:57 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ typedef struct s_graphics
     void *collect;
     void *enemy;
 } t_graphics;
+
+typedef struct s_animation
+{
+    void *frames[4];
+    int current_frame;
+    int frame_delay;
+} t_animation;
+
 
 int verify_map(t_map *map);
 void read_map(t_map *map);

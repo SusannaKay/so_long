@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 08:12:55 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/15 08:12:56 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/15 08:25:18 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,14 @@ t_graphics *create_tgraphics(t_graphics *graphics)
     init_graphics(graphics);
     return (graphics);
 }
+
+// t_animation *create_tanimation(t_animation *animation)
+// {
+//     animation = malloc(sizeof(t_animation));
+//     if (!animation)
+//         return (NULL);
+//     animation->current_frame = 0;
+//     animation->frame_delay = 0;
+    
+//     return (animation);
+// }
