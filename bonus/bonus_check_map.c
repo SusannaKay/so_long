@@ -99,5 +99,3 @@ int verify_map(t_map *map)
     flood_fill(map);
     return(0);
 }
-
-// ci sono errori con valgrind se la mappa non e' corretta

@@ -21,6 +21,8 @@ int move_player(int keysym, t_map *map)
     int new_x;
     int new_y;
 
+    if (keysym != UP && keysym != DOWN && keysym != LEFT && keysym != RIGHT)
+        return (1);
     update_position(keysym, map, &new_x, &new_y);
     if (map->map[new_y][new_x] == 'E' && map->score == map->collect)
         return (exit_game(map, "You win!\n"), 0);
@@ -35,7 +37,6 @@ int move_player(int keysym, t_map *map)
             map->score++;
         map->map[new_y][new_x] = 'P';
         map->moves++;
-        ft_printf("Moves number: %d\n", map->moves);
         map->p_x = new_x;
         map->p_y = new_y;
         return (render_map(map, 1), 0);

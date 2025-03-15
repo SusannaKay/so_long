@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
             return (ft_printf("Error\nFile format not valid, use .ber"), 1);
 
         map = create_tmap(map);
-        map->filename = ft_strjoin("maps/", argv[1]);
+        map->filename = ft_strjoin("bonus/maps/", argv[1]);
         if (!map->filename)
             exit_game(map, "Error:\nFilename not found");
         read_map(map);

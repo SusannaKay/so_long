@@ -15,7 +15,7 @@ static void fill_char(char **matrix, int x, int y, t_map *map)
 {
     if (x < 0 || y < 0 || x >= map->len_row || y >= map->rows) 
         return;
-    if(( matrix[y][x] == '1'|| matrix[y][x] == 'F' ))
+    if(( matrix[y][x] == '1'|| matrix[y][x] == 'F' || matrix[y][x] == 'A' ))
         return;
     
     matrix[y][x] = 'F';

@@ -59,4 +59,5 @@ void render_map(t_map *map, int n)
         }
         y++;
     }
+    display_moves(map);
 }
