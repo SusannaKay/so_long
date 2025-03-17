@@ -60,15 +60,13 @@ int	main(int argc, char *argv[])
 			exit_game(map, "Error:\nFilename not found");
 		read_map(map);
 		verify_map(map);
-		graphics = create_tgraphics(graphics);
-		map->graphics = graphics;
+		map->graphics = create_tgraphics(graphics);
 		if (!map->graphics)
-		{
+		{ 
 			ft_printf("Error:\nGraphics pointer is null");
 			return (0);
 		}
-		animation = create_tanimation(animation);
-		map->animation = animation;
+		map->animation = create_tanimation(animation);
 		if (!map->animation)
 		{
 			ft_printf("Error:\nAnimation pointer is null");
