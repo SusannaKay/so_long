@@ -33,6 +33,7 @@ void	display_moves(t_map *map)
 		while (j < 200)  
 		{
 			mlx_pixel_put(map->mlx, map->win, j, i, 0x000000);
+			j++;
 		}
 		i++;
 	}

@@ -11,63 +11,67 @@
 /* ************************************************************************** */
 
 #include "../so_long.h"
-void update_position(int keysym, t_map *map, int *new_x, int *new_y)
+
+void	update_position(int keysym, t_map *map, int *new_x, int *new_y)
 {
-    *new_x = map->p_x;
-    *new_y = map->p_y;
-    
-    if (map->graphics->player)
-    {
-        mlx_destroy_image(map->mlx, map->graphics->player);
-        map->graphics->player = NULL;
-    }
-    if (keysym == UP)
-    {
-        *new_y -= 1;
-        map->graphics->player = mlx_xpm_file_to_image(map->mlx, "graphics/back0.xpm", &map->tilesize, &map->tilesize);
-    }
-    if (keysym == DOWN)
-    {
-        *new_y += 1;
-        map->graphics->player = mlx_xpm_file_to_image(map->mlx, "graphics/front0.xpm", &map->tilesize, &map->tilesize);
-    }
-    if (keysym == LEFT)
-    {
-        *new_x -= 1;
-        map->graphics->player = mlx_xpm_file_to_image(map->mlx, "graphics/left0.xpm", &map->tilesize, &map->tilesize);
-    }
-    if (keysym == RIGHT)
-    {
-        *new_x += 1;
-        map->graphics->player = mlx_xpm_file_to_image(map->mlx, "graphics/right0.xpm", &map->tilesize, &map->tilesize);
-    }
+	*new_x = map->p_x;
+	*new_y = map->p_y;
+	if (map->graphics->player)
+	{
+		mlx_destroy_image(map->mlx, map->graphics->player);
+		map->graphics->player = NULL;
+	}
+	if (keysym == UP)
+	{
+		*new_y -= 1;
+		map->graphics->player = mlx_xpm_file_to_image(map->mlx,
+				"graphics/back0.xpm", &map->tilesize, &map->tilesize);
+	}
+	if (keysym == DOWN)
+	{
+		*new_y += 1;
+		map->graphics->player = mlx_xpm_file_to_image(map->mlx,
+				"graphics/front0.xpm", &map->tilesize, &map->tilesize);
+	}
+	if (keysym == LEFT)
+	{
+		*new_x -= 1;
+		map->graphics->player = mlx_xpm_file_to_image(map->mlx,
+				"graphics/left0.xpm", &map->tilesize, &map->tilesize);
+	}
+	if (keysym == RIGHT)
+	{
+		*new_x += 1;
+		map->graphics->player = mlx_xpm_file_to_image(map->mlx,
+				"graphics/right0.xpm", &map->tilesize, &map->tilesize);
+	}
 }
 
-int move_player(int keysym, t_map *map)
+int	move_player(int keysym, t_map *map)
 {
-    int new_x;
-    int new_y;
-    
-    if (keysym != UP && keysym != DOWN && keysym != LEFT && keysym != RIGHT)
-        return (1);
-    update_position(keysym, map, &new_x, &new_y);
-    if (map->map[new_y][new_x] == 'E' && map->score == map->collect)
-        return (exit_game(map, "You win!\n"), 0);
-    if (map->map[new_y][new_x] == 'A')
-        return (exit_game(map, "You Loose!\n"), 0);
-    else if (map->map[new_y][new_x] == 'E' && map->score != map->collect)
-        ft_printf("You must collect all the cookies!\n");
-    if (map->map[new_y][new_x] != '1' && map->map[new_y][new_x] != 'E')  
-    {
-        map->map[map->p_y][map->p_x] = '0';
-        if (map->map[new_y][new_x] == 'C')
-            map->score++;
-        map->map[new_y][new_x] = 'P';
-        map->moves++;
-        ft_printf("Moves number: %d\n", map->moves);
-        map->p_x = new_x;
-        map->p_y = new_y;
-        return (render_map(map, 1), 0);
-    }
-    return (1);
+	int	new_x;
+	int	new_y;
+
+	if (keysym != UP && keysym != DOWN && keysym != LEFT && keysym != RIGHT)
+		return (1);
+	update_position(keysym, map, &new_x, &new_y);
+	if (map->map[new_y][new_x] == 'E' && map->score == map->collect)
+		return (exit_game(map, "You win!\n"), 0);
+	if (map->map[new_y][new_x] == 'A')
+		return (exit_game(map, "You Loose!\n"), 0);
+	else if (map->map[new_y][new_x] == 'E' && map->score != map->collect)
+		ft_printf("You must collect all the cookies!\n");
+	if (map->map[new_y][new_x] != '1' && map->map[new_y][new_x] != 'E')
+	{
+		map->map[map->p_y][map->p_x] = '0';
+		if (map->map[new_y][new_x] == 'C')
+			map->score++;
+		map->map[new_y][new_x] = 'P';
+		map->moves++;
+		ft_printf("Moves number: %d\n", map->moves);
+		map->p_x = new_x;
+		map->p_y = new_y;
+		return (render_map(map, 1), 0);
+	}
+	return (1);
 }

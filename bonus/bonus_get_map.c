@@ -87,7 +87,7 @@ static char **fill_map(t_map *map)
 void read_map(t_map *map)
 {
     if (get_map_size(map) < 0 || create_matrix(map) < 0 || fill_map(map) == NULL)
-        return (exit_game(map, "Error:\nMap not found."), -1);
+        exit_game(map, "Error:\nMap not found.");
     ft_printf("righe lette: %d\n",get_map_size(map));
     create_matrix(map);
     if (map-> map != NULL)
