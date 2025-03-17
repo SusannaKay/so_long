@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 08:13:09 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/15 08:13:10 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/17 16:43:54 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	move_player(int keysym, t_map *map)
 	int	new_x;
 	int	new_y;
 
+	if (!map || !map->map || !map->animation)
+        return (ft_printf("Error: Null pointer detected\n"), 1);
 	update_position(keysym, map, &new_x, &new_y);
 	if (keysym != UP && keysym != DOWN && keysym != LEFT && keysym != RIGHT)
 		return (1);
