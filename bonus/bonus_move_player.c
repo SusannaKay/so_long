@@ -31,6 +31,7 @@ int	move_player(int keysym, t_map *map)
 	int	new_x;
 	int	new_y;
 
+	update_position(keysym, map, &new_x, &new_y);
 	if (keysym != UP && keysym != DOWN && keysym != LEFT && keysym != RIGHT)
 		return (1);
 	update_position(keysym, map, &new_x, &new_y);
@@ -47,6 +48,15 @@ int	move_player(int keysym, t_map *map)
 			map->score++;
 		map->map[new_y][new_x] = 'P';
 		map->moves++;
+		if (keysym == UP)
+            map->animation->direction = 0;
+        else if (keysym == DOWN)
+            map->animation->direction = 1;
+        else if (keysym == LEFT)
+            map->animation->direction = 2;
+        else if (keysym == RIGHT)
+            map->animation->direction = 3;
+        update_player_animation(map);
 		map->p_x = new_x;
 		map->p_y = new_y;
 		return (render_map(map, 1), 0);

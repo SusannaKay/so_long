@@ -12,8 +12,6 @@
 
 #include "../so_long.h"
 
-// verifica se il numero di righe è diverso dal numero di colonne,
-	e che tutte le righe abbiano la stessa lunghezza
 static int	is_rectangular(t_map *map)
 {
 	int	i;
@@ -35,7 +33,6 @@ static int	is_rectangular(t_map *map)
 	return (0);
 }
 
-// controlla se la matrice ha 1 lungo tutti i bordi
 static int	is_closed(char **map)
 {
 	int	i;
@@ -62,7 +59,7 @@ static int	is_closed(char **map)
 	}
 	return (0);
 }
-// check numero di P, E, numero collezionabili e li salva nella struct
+
 static int	parsing_map(t_map *map)
 {
 	int	i;

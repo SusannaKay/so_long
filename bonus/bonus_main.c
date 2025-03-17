@@ -22,6 +22,13 @@ static void	create_window(t_map *map)
 	if (!map->win)
 		exit_game(map, "Error:\nWindow not created");
 }
+
+static int key_up(int keysym, t_map *map)
+{
+	if (keysym == UP || keysym == DOWN || keysym == LEFT || keysym == RIGHT)
+		map->animation->current_frame = 0;
+	return (0);
+}
 static int	key_down(int keysym, t_map *map)
 {
 	if (keysym == XK_Escape)
@@ -33,6 +40,7 @@ static int	key_down(int keysym, t_map *map)
 static void	create_loop(t_map *map)
 {
 	mlx_hook(map->win, KeyPress, KeyPressMask, key_down, map);
+	mlx_hook(map->win, KeyRelease, KeyReleaseMask, key_up, map);
 	mlx_hook(map->win, 17, 0L, exit_game, map);
 	mlx_loop(map->mlx);
 }
@@ -40,6 +48,7 @@ int	main(int argc, char *argv[])
 {
 	t_map		*map;
 	t_graphics	*graphics;
+	t_animation	*animation;
 
 	if (argc == 2)
 	{
@@ -55,9 +64,17 @@ int	main(int argc, char *argv[])
 		map->graphics = graphics;
 		if (!map->graphics)
 		{
-			ft_printf("Error:\ngGraphics pointer is null");
+			ft_printf("Error:\nGraphics pointer is null");
 			return (0);
 		}
+		animation = create_tanimation(animation);
+		map->animation = animation;
+		if (!map->animation)
+		{
+			ft_printf("Error:\nAnimation pointer is null");
+			return (0);
+		}
+		load_player_sprites(map);
 		create_window(map);
 		render_map(map, 0);
 		create_loop(map);

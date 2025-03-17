@@ -71,7 +71,7 @@ void	render_map(t_map *map, int n)
 			if (map->map[y][x] == 'E')
 				put_image(map, map->graphics->exit, x, y);
 			if (map->map[y][x] == 'P')
-				put_image(map, map->graphics->player, x, y);
+				put_image(map, map->animation->frames[map->animation->direction][map->animation->current_frame], x, y);
 			if (map->map[y][x] == 'A')
 				put_image(map, map->graphics->enemy, x, y);
 			x++;

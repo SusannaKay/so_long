@@ -36,6 +36,7 @@ typedef struct s_map
 	void				*mlx;
 	void				*win;
 	struct s_graphics	*graphics;
+	struct s_animation	*animation;
 	int					len_row;
 	int					rows;
 	int					collect;
@@ -60,17 +61,21 @@ typedef struct s_animation
 	void				*frames[4][4];
 	int					current_frame;
 	int					frame_delay;
+	int					direction;
 }						t_animation;
 
 int						verify_map(t_map *map);
 void					read_map(t_map *map);
 t_map					*create_tmap(t_map *map);
 t_graphics				*create_tgraphics(t_graphics *graphics);
+t_animation				*create_tanimation(t_animation *animation);
 int						exit_game(t_map *map, const char *error_message);
 int						flood_fill(t_map *map);
 void					render_map(t_map *map, int n);
 int						move_player(int keycode, t_map *map);
 void					display_moves(t_map *map);
+int						update_player_animation(t_map *map);
+void load_player_sprites(t_map *map);
 #endif
 
 //valgrind -s --leak-check=full --show-leak-kinds=all

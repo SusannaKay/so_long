@@ -18,6 +18,7 @@ SRC_BONUS = bonus/bonus_main.c\
 			bonus/bonus_graphics.c\
 			bonus/bonus_move_player.c\
 			bonus/bonus_display_moves.c\
+			bonus/bonus_player_animation.c\
 
 
 OBJ = $(SRC:.c=.o)

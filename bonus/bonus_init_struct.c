@@ -53,13 +53,27 @@ t_graphics	*create_tgraphics(t_graphics *graphics)
 	return (graphics);
 }
 
-// t_animation *create_tanimation(t_animation *animation)
-// {
-//     animation = malloc(sizeof(t_animation));
-//     if (!animation)
-//         return (NULL);
-//     animation->current_frame = 0;
-//     animation->frame_delay = 0;
+t_animation *create_tanimation(t_animation *animation)
+{
+    int i;
+    int j;
 
-//     return (animation);
-// }
+    i = 0;
+    animation = malloc(sizeof(t_animation));
+    if (!animation)
+        return (NULL);
+    while (i < 4)
+    {
+        j = 0;
+        while (j < 4)
+        {
+            animation->frames[i][j] = NULL;
+            j++;
+        }
+        i++;
+    }
+    animation->current_frame = 0;
+    animation->frame_delay = 0;
+    animation->direction = 0;
+    return (animation);
+}
