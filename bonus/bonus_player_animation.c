@@ -1,6 +1,6 @@
 #include "bonus_so_long.h"
 
-void	load_direction(t_map *map, char *dir, int i)
+static void	load_direction(t_map *map, char *dir, int i)
 {
 	int		size;
 	char	*path;

@@ -10,7 +10,7 @@ int enemy_patrol(t_map *map)
         return(0);
     map->enemy->frame_delay = 0;
     next_x = map->enemy->x + map->enemy->direction;
-    if (map->map[map->enemy->y][next_x] == '1' || map->map[map->enemy->y][next_x] == 'E') 
+    if (map->map[map->enemy->y][next_x] == '1') 
         map->enemy->direction *= -1; 
     else
     {

@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 08:13:03 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/18 10:38:56 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/18 15:54:12 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	key_down(int keysym, t_map *map)
 static int game_loop(t_map *map)
 {
     update_player_animation(map);
+	enemy_patrol(map);
     render_map(map, 1);
     return (0);
 }
@@ -42,7 +43,6 @@ static void	create_loop(t_map *map)
 	mlx_hook(map->win, KeyPress, KeyPressMask, key_down, map);
 	mlx_hook(map->win, 17, 0L, exit_game, map);
 	mlx_loop_hook(map->mlx, game_loop, map);
-	mlx_loop_hook(map->mlx, enemy_patrol, map);
 	mlx_loop(map->mlx);
 }
 int	main(int argc, char *argv[])
@@ -75,11 +75,8 @@ int	main(int argc, char *argv[])
 		// 	return (0);
 		// }
 		create_window(map);
-		ft_printf("pointer win create\n");
 		load_player_sprites(map);
-		ft_printf("sprites create\n");
 		render_map(map, 0);
-		ft_printf("primo rendering\n");
 		create_loop(map);
 		return (0);
 	}
