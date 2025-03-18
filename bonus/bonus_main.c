@@ -42,6 +42,7 @@ static void	create_loop(t_map *map)
 	mlx_hook(map->win, KeyPress, KeyPressMask, key_down, map);
 	mlx_hook(map->win, 17, 0L, exit_game, map);
 	mlx_loop_hook(map->mlx, game_loop, map);
+	mlx_loop_hook(map->mlx, enemy_patrol, map);
 	mlx_loop(map->mlx);
 }
 int	main(int argc, char *argv[])
@@ -60,21 +61,25 @@ int	main(int argc, char *argv[])
 			exit_game(map, "Error:\nFilename not found");
 		read_map(map);
 		verify_map(map);
-		map->graphics = create_tgraphics(graphics);
-		if (!map->graphics)
-		{ 
-			ft_printf("Error:\nGraphics pointer is null");
-			return (0);
-		}
-		map->animation = create_tanimation(animation);
-		if (!map->animation)
-		{
-			ft_printf("Error:\nAnimation pointer is null");
-			return (0);
-		}
+		create_struct(map);
+		// map->graphics = create_tgraphics(graphics);
+		// if (!map->graphics)
+		// { 
+		// 	ft_printf("Error:\nGraphics pointer is null");
+		// 	return (0);
+		// }
+		// map->animation = create_tanimation(animation);
+		// if (!map->animation)
+		// {
+		// 	ft_printf("Error:\nAnimation pointer is null");
+		// 	return (0);
+		// }
 		create_window(map);
+		ft_printf("pointer win create\n");
 		load_player_sprites(map);
+		ft_printf("sprites create\n");
 		render_map(map, 0);
+		ft_printf("primo rendering\n");
 		create_loop(map);
 		return (0);
 	}

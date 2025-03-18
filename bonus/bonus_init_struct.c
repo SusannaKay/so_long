@@ -12,7 +12,7 @@
 
 #include "bonus_so_long.h"
 
-static void	init_map(t_map *map)
+void	init_map(t_map *map)
 {
 	map->filename = NULL;
 	map->map = NULL;
@@ -27,7 +27,7 @@ static void	init_map(t_map *map)
 	map->p_x = 0;
 	map->p_y = 0;
 }
-static void	init_graphics(t_graphics *graphics)
+void	init_graphics(t_graphics *graphics)
 {
 	graphics->collect = NULL;
 	graphics->player = NULL;
@@ -36,44 +36,28 @@ static void	init_graphics(t_graphics *graphics)
 	graphics->exit = NULL;
 	graphics->enemy = NULL;
 }
-t_map	*create_tmap(t_map *map)
-{
-	map = malloc(sizeof(t_map));
-	if (!map)
-		return (NULL);
-	init_map(map);
-	return (map);
-}
-t_graphics	*create_tgraphics(t_graphics *graphics)
-{
-	graphics = malloc(sizeof(t_graphics));
-	if (!graphics)
-		return (NULL);
-	init_graphics(graphics);
-	return (graphics);
-}
 
-t_animation *create_tanimation(t_animation *animation)
+void init_enemy(t_map *map)
 {
-    int i;
-    int j;
+    int y;
+	int x;
 
-    i = 0;
-    animation = malloc(sizeof(t_animation));
-    if (!animation)
-        return (NULL);
-    while (i < 4)
+	y = 0;
+    while (map->map[y])
     {
-        j = 0;
-        while (j < 4)
+        x = 0;
+        while (map->map[y][x])
         {
-            animation->frames[i][j] = NULL;
-            j++;
+            if (map->map[y][x] == 'A')
+            {
+                map->enemy->x = x;
+                map->enemy->y = y;
+                map->enemy->direction = 1;
+				map->enemy->frame_delay = 0;
+                return;
+            }
+            x++;
         }
-        i++;
+        y++;
     }
-    animation->current_frame = 0;
-    animation->frame_delay = 0;
-    animation->direction = 1;
-    return (animation);
 }

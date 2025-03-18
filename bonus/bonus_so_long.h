@@ -37,6 +37,7 @@ typedef struct s_map
 	void				*win;
 	struct s_graphics	*graphics;
 	struct s_animation	*animation;
+	struct s_enemy		*enemy;
 	int					len_row;
 	int					rows;
 	int					collect;
@@ -58,10 +59,11 @@ typedef struct s_graphics
 
 typedef struct s_enemy
 {
-    int x;
-    int y;
-    int direction;
-} t_enemy;
+	int					x;
+	int					y;
+	int					direction;
+	int					frame_delay;
+}						t_enemy;
 
 typedef struct s_animation
 {
@@ -74,15 +76,22 @@ typedef struct s_animation
 int						verify_map(t_map *map);
 void					read_map(t_map *map);
 t_map					*create_tmap(t_map *map);
-t_graphics				*create_tgraphics(t_graphics *graphics);
-t_animation				*create_tanimation(t_animation *animation);
+t_graphics					*create_tgraphics(t_map *map);
+t_animation					*create_tanimation(t_map *map);
 int						exit_game(t_map *map, const char *error_message);
 int						flood_fill(t_map *map);
 void					render_map(t_map *map, int n);
 int						move_player(int keycode, t_map *map);
 void					display_moves(t_map *map);
 int						update_player_animation(t_map *map);
-void load_player_sprites(t_map *map);
+void					load_player_sprites(t_map *map);
+void					init_graphics(t_graphics *graphics);
+void					init_map(t_map *map);
+t_enemy					*create_tenemy(t_map *map);
+int						enemy_patrol(t_map *map);
+void					init_enemy(t_map *map);
+t_map					*create_struct(t_map *map);
+
 #endif
 
 //valgrind -s --leak-check=full --show-leak-kinds=all
