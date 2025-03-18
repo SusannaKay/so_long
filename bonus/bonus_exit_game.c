@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 08:13:26 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/15 08:13:27 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/18 10:34:14 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void free_map(t_map *map)
 
 static void free_graphics(t_map *map)
 {
+     if (!map->graphics)
+        return;
     if (map->graphics->collect)
         mlx_destroy_image(map->mlx, map->graphics->collect);
     if (map->graphics->player)
@@ -52,17 +54,38 @@ static void free_graphics(t_map *map)
     if (map->graphics->enemy)
         mlx_destroy_image(map->mlx, map->graphics->enemy);
 }
+static void free_animation(t_map *map)
+{
+    int i;
+    int j;
+
+    if (!map->animation)
+        return;
+    i = 0;
+    while (i < 4)
+    {
+        j = 0;
+        while (j < 4)
+        {
+            if (map->animation->frames[i][j])
+                mlx_destroy_image(map->mlx, map->animation->frames[i][j]);
+            j++;
+        }
+        i++;
+    }
+    free(map->animation);
+}
 
 int exit_game(t_map *map, const char *error_message)
 {
-    if (ft_strncmp(error_message, "!", ft_strlen(error_message)) == 0)
-        error_message = NULL;
     if (error_message)
         ft_printf("%s\n", error_message);
     free_graphics(map);
     mlx_loop_end(map->mlx);
     if (map)
     {
+        free_graphics(map);
+        free_animation(map);
         if (map->mlx && map->win)
             mlx_destroy_window(map->mlx, map->win);
         if (map->mlx)

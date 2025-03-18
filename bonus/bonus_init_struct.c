@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 08:12:55 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/15 08:25:18 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/18 10:31:22 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ t_animation *create_tanimation(t_animation *animation)
     }
     animation->current_frame = 0;
     animation->frame_delay = 0;
-    animation->direction = 0;
+    animation->direction = 1;
     return (animation);
 }

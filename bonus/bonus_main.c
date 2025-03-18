@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 08:13:03 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/15 08:13:04 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/18 10:38:56 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int key_up(int keysym, t_map *map)
 static int	key_down(int keysym, t_map *map)
 {
 	if (keysym == XK_Escape)
-		exit_game(map, "Quit program by user");
+		exit_game(map, "Program quit by user");
 	else
 		move_player(keysym, map);
 	return (0);
@@ -72,8 +72,8 @@ int	main(int argc, char *argv[])
 			ft_printf("Error:\nAnimation pointer is null");
 			return (0);
 		}
-		load_player_sprites(map);
 		create_window(map);
+		load_player_sprites(map);
 		render_map(map, 0);
 		create_loop(map);
 		return (0);

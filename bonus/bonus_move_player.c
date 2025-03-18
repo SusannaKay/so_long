@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 08:13:09 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/17 16:43:54 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/18 10:40:17 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	move_player(int keysym, t_map *map)
 
 	if (!map || !map->map || !map->animation)
         return (ft_printf("Error: Null pointer detected\n"), 1);
-	update_position(keysym, map, &new_x, &new_y);
 	if (keysym != UP && keysym != DOWN && keysym != LEFT && keysym != RIGHT)
 		return (1);
 	update_position(keysym, map, &new_x, &new_y);
@@ -41,7 +40,7 @@ int	move_player(int keysym, t_map *map)
 		return (exit_game(map, "You win!\n"), 0);
 	if (map->map[new_y][new_x] == 'A')
 		return (exit_game(map, "You Loose!\n"), 0);
-	else if (map->map[new_y][new_x] == 'E' && map->score != map->collect)
+	if (map->map[new_y][new_x] == 'E' && map->score != map->collect)
 		ft_printf("You must collect all the cookies!\n");
 	if (map->map[new_y][new_x] != '1' && map->map[new_y][new_x] != 'E')
 	{
