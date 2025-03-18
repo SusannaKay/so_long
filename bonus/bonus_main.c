@@ -23,12 +23,6 @@ static void	create_window(t_map *map)
 		exit_game(map, "Error:\nWindow not created");
 }
 
-static int key_up(int keysym, t_map *map)
-{
-	if (keysym == UP || keysym == DOWN || keysym == LEFT || keysym == RIGHT)
-		map->animation->current_frame = 0;
-	return (0);
-}
 static int	key_down(int keysym, t_map *map)
 {
 	if (keysym == XK_Escape)
@@ -37,11 +31,17 @@ static int	key_down(int keysym, t_map *map)
 		move_player(keysym, map);
 	return (0);
 }
+static int game_loop(t_map *map)
+{
+    update_player_animation(map);
+    render_map(map, 1);
+    return (0);
+}
 static void	create_loop(t_map *map)
 {
 	mlx_hook(map->win, KeyPress, KeyPressMask, key_down, map);
-	mlx_hook(map->win, KeyRelease, KeyReleaseMask, key_up, map);
 	mlx_hook(map->win, 17, 0L, exit_game, map);
+	mlx_loop_hook(map->mlx, game_loop, map);
 	mlx_loop(map->mlx);
 }
 int	main(int argc, char *argv[])

@@ -56,6 +56,13 @@ typedef struct s_graphics
 	void				*enemy;
 }						t_graphics;
 
+typedef struct s_enemy
+{
+    int x;
+    int y;
+    int direction;
+} t_enemy;
+
 typedef struct s_animation
 {
 	void				*frames[4][4];

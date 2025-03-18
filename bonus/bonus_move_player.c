@@ -57,7 +57,6 @@ int	move_player(int keysym, t_map *map)
             map->animation->direction = 2;
         else if (keysym == RIGHT)
             map->animation->direction = 3;
-        update_player_animation(map);
 		map->p_x = new_x;
 		map->p_y = new_y;
 		return (render_map(map, 1), 0);
