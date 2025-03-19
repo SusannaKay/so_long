@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 08:13:26 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/18 10:34:14 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/19 09:20:55 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,19 @@ int exit_game(t_map *map, const char *error_message)
 {
     if (error_message)
         ft_printf("%s\n", error_message);
-    free_graphics(map);
-    mlx_loop_end(map->mlx);
     if (map)
     {
-        free_graphics(map);
-        free_animation(map);
+        if (map->graphics)
+            free_graphics(map);
+        if (map->animation)
+            free_animation(map);
+        if (map->enemy)
+            free(map->enemy);
+        if (map->mlx)
+            mlx_loop_end(map->mlx);
         if (map->mlx && map->win)
             mlx_destroy_window(map->mlx, map->win);
+            map->win = NULL;
         if (map->mlx)
             {
                 mlx_destroy_display(map->mlx);

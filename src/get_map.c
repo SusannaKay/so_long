@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:32:08 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/14 18:35:16 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/19 09:45:08 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,15 @@ static char	**fill_map(t_map *map)
 
 void	read_map(t_map *map)
 {
-	if (get_map_size(map) < 0 || create_matrix(map) < 0
-		|| fill_map(map) == NULL)
+	ft_printf("Reading map...\n");
+	if (get_map_size(map) < 0)
 		exit_game(map, "Error:\nMap not found.");
-	ft_printf("righe lette: %d\n", get_map_size(map));
-	create_matrix(map);
-	if (map->map != NULL)
-		ft_printf("matrice creata correttamente\n");
-	if (fill_map(map) > 0)
-		ft_printf("Mappa duplicata correttamente\n");
-	else
-		exit_game(map, "Error\nErrore lettura mappa\n");
-	return ;
+
+	if (create_matrix(map) < 0)
+		exit_game(map, "Error:\nMemory allocation failed.");
+
+	if (fill_map(map) == NULL)
+		exit_game(map, "Error:\nError reading map.");
+
+	ft_printf("Reading map...Done\n");
 }
