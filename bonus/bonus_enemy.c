@@ -6,7 +6,7 @@ int enemy_patrol(t_map *map)
 {
     int next_x;
     
-    if ( map-> enemy->frame_delay++ < 20)
+    if ( map-> enemy->frame_delay++ < 100)
         return(0);
     map->enemy->frame_delay = 0;
     next_x = map->enemy->x + map->enemy->direction;

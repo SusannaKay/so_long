@@ -93,5 +93,3 @@ void					init_enemy(t_map *map);
 t_map					*create_struct(t_map *map);
 
 #endif
-
-//valgrind -s --leak-check=full --show-leak-kinds=all

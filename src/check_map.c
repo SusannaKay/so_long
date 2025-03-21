@@ -24,12 +24,12 @@ static int	is_rectangular(t_map *map)
 	while (map->map[i] != NULL)
 	{
 		if (ft_strlen(map->map[i]) != len_row)
-			return (ft_printf("Error\nMappa non valida"), -1);
+			return (ft_printf("Error:\nMap not valid\n"), -1);
 		i++;
 	}
 	num_rows++;
 	if (num_rows == len_row)
-		return (ft_printf("Error\nMappa non rettangolare"), -1);
+		return (ft_printf("Error:\nThe map must be rectangular\n"), -1);
 	return (0);
 }
 
@@ -50,11 +50,11 @@ static int	is_closed(char **map)
 		while (map[i][len_row])
 		{
 			if ((i == 0 || i == last_row) && map[i][len_row] != '1')
-				return (ft_printf("Error\nMappa aperta"), -1);
+				return (ft_printf("Error:\nThe map must be surrounded by walls\n"), -1);
 			len_row++;
 		}
 		if (map[i][0] != '1' || map[i][ft_strlen(map[i]) - 1] != '1')
-			return (ft_printf("Error\nMappa aperta"), -1);
+			return (ft_printf("Error:\nThe map must be surrounded by walls\n"), -1);
 		i++;
 	}
 	return (0);
@@ -99,6 +99,8 @@ static int	parsing_map(t_map *map)
 		}
 		i++;
 	}
+	if( e_counter == 0 || p_counter == 0 || map->collect == 0)
+		return(ft_printf("Error\nThere must be 1 Player, 1 Exit and at least 1 collectible\n"), -1);
 	return (0);
 }
 
@@ -106,7 +108,7 @@ int	verify_map(t_map *map)
 {
 	if (is_rectangular(map) < 0 || is_closed(map->map) < 0
 		|| parsing_map(map) < 0)
-		return (exit_game(map, NULL), -1);
+		return (exit_game(map, "Error:\nMap not valid\n"), -1);
 	flood_fill(map);
 	return (0);
 }

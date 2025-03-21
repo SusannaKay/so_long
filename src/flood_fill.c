@@ -31,6 +31,11 @@ static void	fill_char(char **matrix, int x, int y, t_map *map)
 		return ;
 	if ((matrix[y][x] == '1' || matrix[y][x] == 'F'))
 		return ;
+	if (matrix[y][x] == 'E')
+	{
+		matrix[y][x] = 'F';
+		return ;
+	}
 	matrix[y][x] = 'F';
 	fill_char(matrix, x + 1, y, map);
 	fill_char(matrix, x - 1, y, map);

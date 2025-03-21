@@ -36,7 +36,7 @@ void	load_player_sprites(t_map *map)
 }
 int	update_player_animation(t_map *map)
 {
-	if (map->animation->frame_delay++ >= 500)
+	if (map->animation->frame_delay++ >= 100)
 	{
 		map->animation->current_frame = (map->animation->current_frame + 1) % 4;
 		map->animation->frame_delay = 0;

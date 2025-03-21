@@ -62,18 +62,6 @@ int	main(int argc, char *argv[])
 		read_map(map);
 		verify_map(map);
 		create_struct(map);
-		// map->graphics = create_tgraphics(graphics);
-		// if (!map->graphics)
-		// { 
-		// 	ft_printf("Error:\nGraphics pointer is null");
-		// 	return (0);
-		// }
-		// map->animation = create_tanimation(animation);
-		// if (!map->animation)
-		// {
-		// 	ft_printf("Error:\nAnimation pointer is null");
-		// 	return (0);
-		// }
 		create_window(map);
 		load_player_sprites(map);
 		render_map(map, 0);
