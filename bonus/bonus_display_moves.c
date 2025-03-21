@@ -24,6 +24,6 @@ void	display_moves(t_map *map)
 	free(temp);
 	if (!moves)
 		return ;
-	_string_put(map->mlx, map->win, 10, 25, 0x000000, moves);
+	mlx_string_put(map->mlx, map->win, 10, 25, 0x000000, moves);
 	free(moves);
 }

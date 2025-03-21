@@ -26,6 +26,31 @@ void	update_position(int keysym, t_map *map, int *new_x, int *new_y)
 		*new_x += 1;
 }
 
+static void	update_direction(int keysym, t_map *map)
+{
+	if (keysym == UP)
+		map->animation->direction = 0;
+	else if (keysym == DOWN)
+		map->animation->direction = 1;
+	else if (keysym == LEFT)
+		map->animation->direction = 2;
+	else if (keysym == RIGHT)
+		map->animation->direction = 3;
+}
+
+static int	handle_move(int keysym, t_map *map, int new_x, int new_y)
+{
+	map->map[map->p_y][map->p_x] = '0';
+	if (map->map[new_y][new_x] == 'C')
+		map->score++;
+	map->map[new_y][new_x] = 'P';
+	map->moves++;
+	update_direction(keysym, map);
+	map->p_x = new_x;
+	map->p_y = new_y;
+	return (render_map(map, 1), 0);
+}
+
 int	move_player(int keysym, t_map *map)
 {
 	int	new_x;
@@ -43,23 +68,6 @@ int	move_player(int keysym, t_map *map)
 	if (map->map[new_y][new_x] == 'E' && map->score != map->collect)
 		ft_printf("You must collect all the cookies!\n");
 	if (map->map[new_y][new_x] != '1' && map->map[new_y][new_x] != 'E')
-	{
-		map->map[map->p_y][map->p_x] = '0';
-		if (map->map[new_y][new_x] == 'C')
-			map->score++;
-		map->map[new_y][new_x] = 'P';
-		map->moves++;
-		if (keysym == UP)
-			map->animation->direction = 0;
-		else if (keysym == DOWN)
-			map->animation->direction = 1;
-		else if (keysym == LEFT)
-			map->animation->direction = 2;
-		else if (keysym == RIGHT)
-			map->animation->direction = 3;
-		map->p_x = new_x;
-		map->p_y = new_y;
-		return (render_map(map, 1), 0);
-	}
+		return (handle_move(keysym, map, new_x, new_y));
 	return (1);
 }

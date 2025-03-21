@@ -54,6 +54,7 @@ static void	free_graphics(t_map *map)
 	if (map->graphics->enemy)
 		mlx_destroy_image(map->mlx, map->graphics->enemy);
 }
+
 static void	free_animation(t_map *map)
 {
 	int	i;

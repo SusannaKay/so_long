@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef BONUS_SO_LONG_H
+# define BONUS_SO_LONG_H
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
@@ -45,6 +45,8 @@ typedef struct s_map
 	int					p_y;
 	int					moves;
 	int					score;
+	int					p_counter;
+	int					e_counter;
 }						t_map;
 
 typedef struct s_graphics

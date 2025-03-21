@@ -20,6 +20,7 @@ static void	remove_nl(char *line)
 	if (line[len - 1] == '\n')
 		line[len - 1] = '\0';
 }
+
 static int	get_map_size(t_map *map)
 {
 	int		fd;
@@ -57,6 +58,7 @@ static int	create_matrix(t_map *map)
 	}
 	return (0);
 }
+
 static char	**fill_map(t_map *map)
 {
 	int		fd;
@@ -89,12 +91,9 @@ void	read_map(t_map *map)
 	ft_printf("Reading map...\n");
 	if (get_map_size(map) < 0)
 		exit_game(map, "Error:\nMap not found.");
-
 	if (create_matrix(map) < 0)
 		exit_game(map, "Error:\nMemory allocation failed.");
-
 	if (fill_map(map) == NULL)
 		exit_game(map, "Error:\nError reading map.");
-
 	ft_printf("Reading map...Done\n");
 }

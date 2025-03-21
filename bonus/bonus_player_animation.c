@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bonus_player_animation.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skayed <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/21 11:33:23 by skayed            #+#    #+#             */
+/*   Updated: 2025/03/21 11:33:25 by skayed           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "bonus_so_long.h"
 
 static void	load_direction(t_map *map, char *dir, int i)
@@ -34,9 +46,10 @@ void	load_player_sprites(t_map *map)
 	map->animation->frame_delay = 0;
 	map->animation->direction = 1;
 }
+
 int	update_player_animation(t_map *map)
 {
-	if (map->animation->frame_delay++ >= 100)
+	if (map->animation->frame_delay++ >= 200)
 	{
 		map->animation->current_frame = (map->animation->current_frame + 1) % 4;
 		map->animation->frame_delay = 0;

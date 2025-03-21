@@ -26,7 +26,10 @@ void	init_map(t_map *map)
 	map->score = 0;
 	map->p_x = 0;
 	map->p_y = 0;
+	map->p_counter = 0;
+	map->e_counter = 0;
 }
+
 void	init_graphics(t_graphics *graphics)
 {
 	graphics->collect = NULL;
