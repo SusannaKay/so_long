@@ -25,6 +25,7 @@ static void	free_matrix(char **matrix)
 	}
 	free(matrix);
 }
+
 static void	fill_char(char **matrix, int x, int y, t_map *map)
 {
 	if (x < 0 || y < 0 || x >= map->len_row || y >= map->rows)
@@ -42,6 +43,7 @@ static void	fill_char(char **matrix, int x, int y, t_map *map)
 	fill_char(matrix, x, y + 1, map);
 	fill_char(matrix, x, y - 1, map);
 }
+
 static int	check_matrix(char **matrix)
 {
 	int	i;
@@ -67,37 +69,29 @@ static int	check_matrix(char **matrix)
 
 int	flood_fill(t_map *map)
 {
-	char target;
-	int i;
-	char **matrix;
+	char	target;
+	int		i;
+	char	**matrix;
 
 	target = '1';
 	i = 0;
 	matrix = malloc((map->rows + 1) * sizeof(char *));
 	if (!matrix)
-		return (exit_game(map, "Error:\nFlood fill matrix allocation failed."),
-			-1);
+		return (exit_game(map, "Error:\nFlood fill failed."), -1);
 	while (i < map->rows)
 	{
 		matrix[i] = ft_strdup(map->map[i]);
 		if (!matrix[i])
 		{
 			free_matrix(matrix);
-			return (exit_game(map,
-					"Error:\nFlood fill matrix allocation failed."), -1);
+			return (exit_game(map, "Error:\nFlood fill failed."), -1);
 		}
 		i++;
 	}
 	matrix[i] = NULL;
-	ft_printf("Flooding map...\n");
 	fill_char(matrix, map->p_x, map->p_y, map);
-	ft_printf("Flood complete\n");
 	if (check_matrix(matrix) < 0)
-	{
-		exit_game(map, "Error:\nPath is not valid\n");
-		return (-1);
-	}
+		return (exit_game(map, "Error:\nPath is not valid\n"), -1);
 	free_matrix(matrix);
-	ft_printf("Matrix Freed\n");
 	return (0);
 }

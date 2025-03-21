@@ -22,6 +22,7 @@ static void	create_window(t_map *map)
 	if (!map->win)
 		exit_game(map, "Error:\nWindow not created");
 }
+
 static int	key_down(int keysym, t_map *map)
 {
 	if (keysym == XK_Escape)
@@ -30,12 +31,14 @@ static int	key_down(int keysym, t_map *map)
 		move_player(keysym, map);
 	return (0);
 }
+
 static void	create_loop(t_map *map)
 {
 	mlx_hook(map->win, KeyPress, KeyPressMask, key_down, map);
 	mlx_hook(map->win, 17, 0L, exit_game, map);
 	mlx_loop(map->mlx);
 }
+
 int	main(int argc, char *argv[])
 {
 	t_map		*map;
@@ -52,14 +55,8 @@ int	main(int argc, char *argv[])
 		if (!map->filename)
 			exit_game(map, "Error:\nFilename not found");
 		read_map(map);
-		if (!map->map)
-			exit_game(map, "Error:\nFailed to read map");
-		if (verify_map(map) < 0)
-			return (1);
-		graphics = create_tgraphics(graphics);
-		if (!graphics)
-			exit_game(map, "Error:\nFailed to create graphics");
-		map->graphics = graphics;
+		verify_map(map);
+		create_struct(map);
 		create_window(map);
 		render_map(map, 0);
 		create_loop(map);

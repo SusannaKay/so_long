@@ -42,30 +42,15 @@ static void	free_graphics(t_map *map)
 	if (map->graphics)
 	{
 		if (map->graphics->collect)
-		{
 			mlx_destroy_image(map->mlx, map->graphics->collect);
-			map->graphics->collect = NULL;
-		}
 		if (map->graphics->player)
-		{
 			mlx_destroy_image(map->mlx, map->graphics->player);
-			map->graphics->player = NULL;
-		}
 		if (map->graphics->floor)
-		{
 			mlx_destroy_image(map->mlx, map->graphics->floor);
-			map->graphics->floor = NULL;
-		}
 		if (map->graphics->wall)
-		{
 			mlx_destroy_image(map->mlx, map->graphics->wall);
-			map->graphics->wall = NULL;
-		}
 		if (map->graphics->exit)
-		{
 			mlx_destroy_image(map->mlx, map->graphics->exit);
-			map->graphics->exit = NULL;
-		}
 	}
 }
 

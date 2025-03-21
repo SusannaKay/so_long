@@ -27,7 +27,10 @@ static void	init_map(t_map *map)
 	map->p_x = 0;
 	map->p_y = 0;
 	map->tilesize = TILESIZE;
+	map->p_counter = 0;
+	map->e_counter = 0;
 }
+
 static void	init_graphics(t_graphics *graphics)
 {
 	graphics->collect = NULL;
@@ -36,6 +39,7 @@ static void	init_graphics(t_graphics *graphics)
 	graphics->wall = NULL;
 	graphics->exit = NULL;
 }
+
 t_map	*create_tmap(t_map *map)
 {
 	map = malloc(sizeof(t_map));
@@ -44,11 +48,22 @@ t_map	*create_tmap(t_map *map)
 	init_map(map);
 	return (map);
 }
-t_graphics	*create_tgraphics(t_graphics *graphics)
+
+t_graphics	*create_tgraphics(t_map *map)
 {
-	graphics = malloc(sizeof(t_graphics));
-	if (!graphics)
+	map->graphics = malloc(sizeof(t_graphics));
+	if (!map->graphics)
 		return (NULL);
-	init_graphics(graphics);
-	return (graphics);
+	init_graphics(map->graphics);
+	return (map->graphics);
+}
+
+t_map	*create_struct(t_map *map)
+{
+	if (!map)
+		exit_game(map, "Error:\nMap struct is NULL\n");
+	map->graphics = create_tgraphics(map);
+	if (!map->graphics)
+		exit_game(map, "Error:\nGraphics pointer is null\n");
+	return (map);
 }

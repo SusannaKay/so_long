@@ -21,12 +21,12 @@ static void	set_images(t_map *map)
 			"graphics/front0.xpm", &img_size, &img_size);
 	if (!map->graphics->player)
 		exit_game(map, "Error:\nImage Player not loaded.");
-	map->graphics->floor = mlx_xpm_file_to_image(map->mlx, "graphics/floor.xpm",
-			&img_size, &img_size);
+	map->graphics->floor = mlx_xpm_file_to_image(map->mlx,
+			"graphics/floor.xpm", &img_size, &img_size);
 	if (!map->graphics->floor)
 		exit_game(map, "Error:\nImage Floor not loaded.");
-	map->graphics->wall = mlx_xpm_file_to_image(map->mlx, "graphics/wall.xpm",
-			&img_size, &img_size);
+	map->graphics->wall = mlx_xpm_file_to_image(map->mlx,
+			"graphics/wall.xpm", &img_size, &img_size);
 	if (!map->graphics->wall)
 		exit_game(map, "Error:\nImage Wall not loaded.");
 	map->graphics->collect = mlx_xpm_file_to_image(map->mlx,
@@ -38,13 +38,15 @@ static void	set_images(t_map *map)
 	if (!map->graphics->exit)
 		exit_game(map, "Error:\nImage Exit not loaded.");
 }
+
 static void	put_image(t_map *map, void *image, int x, int y)
 {
 	if (!image)
 		exit_game(map, "Error:\nImage not loaded.");
 	mlx_put_image_to_window(map->mlx, map->win, image, (x * TILESIZE), (y
-				* TILESIZE));
+			* TILESIZE));
 }
+
 void	render_map(t_map *map, int n)
 {
 	int	x;
