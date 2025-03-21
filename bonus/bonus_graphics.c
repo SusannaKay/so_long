@@ -18,7 +18,9 @@ static void	set_images(t_map *map)
 
 	img_size = TILESIZE;
 	map->graphics->player = mlx_xpm_file_to_image(map->mlx,
-			"graphics/front0.xpm", &img_size, &img_size);
+													"graphics/front0.xpm",
+													&img_size,
+													&img_size);
 	if (!map->graphics->player)
 		exit_game(map, "Error:\nImage Player not loaded.");
 	map->graphics->floor = mlx_xpm_file_to_image(map->mlx, "graphics/floor.xpm",
@@ -30,7 +32,9 @@ static void	set_images(t_map *map)
 	if (!map->graphics->wall)
 		exit_game(map, "Error:\nImage Wall not loaded.");
 	map->graphics->collect = mlx_xpm_file_to_image(map->mlx,
-			"graphics/collect.xpm", &img_size, &img_size);
+													"graphics/collect.xpm",
+													&img_size,
+													&img_size);
 	if (!map->graphics->collect)
 		exit_game(map, "Error:\nImage Collect not loaded.");
 	map->graphics->exit = mlx_xpm_file_to_image(map->mlx, "graphics/exit.xpm",
@@ -71,7 +75,9 @@ void	render_map(t_map *map, int n)
 			if (map->map[y][x] == 'E')
 				put_image(map, map->graphics->exit, x, y);
 			if (map->map[y][x] == 'P')
-				put_image(map, map->animation->frames[map->animation->direction][map->animation->current_frame], x, y);
+				put_image(map,
+						map->animation->frames[map->animation->direction][map->animation->current_frame],
+						x, y);
 			if (map->map[y][x] == 'A')
 				put_image(map, map->graphics->enemy, x, y);
 			x++;

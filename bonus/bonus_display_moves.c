@@ -14,15 +14,16 @@
 
 void	display_moves(t_map *map)
 {
-	char *moves;
-	char *temp;
+	char	*moves;
+	char	*temp;
 
 	temp = ft_itoa(map->moves);
 	if (!temp)
-		return;
+		return ;
 	moves = ft_strjoin("Moves: ", temp);
 	free(temp);
 	if (!moves)
-		return;_string_put(map->mlx, map->win, 10, 25, 0x000000, moves);
+		return ;
+	_string_put(map->mlx, map->win, 10, 25, 0x000000, moves);
 	free(moves);
 }

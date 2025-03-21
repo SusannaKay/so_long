@@ -31,12 +31,12 @@ static int	key_down(int keysym, t_map *map)
 		move_player(keysym, map);
 	return (0);
 }
-static int game_loop(t_map *map)
+static int	game_loop(t_map *map)
 {
-    update_player_animation(map);
+	update_player_animation(map);
 	enemy_patrol(map);
-    render_map(map, 1);
-    return (0);
+	render_map(map, 1);
+	return (0);
 }
 static void	create_loop(t_map *map)
 {

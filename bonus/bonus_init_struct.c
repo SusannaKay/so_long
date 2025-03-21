@@ -37,27 +37,27 @@ void	init_graphics(t_graphics *graphics)
 	graphics->enemy = NULL;
 }
 
-void init_enemy(t_map *map)
+void	init_enemy(t_map *map)
 {
-    int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
-    while (map->map[y])
-    {
-        x = 0;
-        while (map->map[y][x])
-        {
-            if (map->map[y][x] == 'A')
-            {
-                map->enemy->x = x;
-                map->enemy->y = y;
-                map->enemy->direction = 1;
+	while (map->map[y])
+	{
+		x = 0;
+		while (map->map[y][x])
+		{
+			if (map->map[y][x] == 'A')
+			{
+				map->enemy->x = x;
+				map->enemy->y = y;
+				map->enemy->direction = 1;
 				map->enemy->frame_delay = 0;
-                return;
-            }
-            x++;
-        }
-        y++;
-    }
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
 }

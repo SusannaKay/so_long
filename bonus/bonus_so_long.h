@@ -76,8 +76,8 @@ typedef struct s_animation
 int						verify_map(t_map *map);
 void					read_map(t_map *map);
 t_map					*create_tmap(t_map *map);
-t_graphics					*create_tgraphics(t_map *map);
-t_animation					*create_tanimation(t_map *map);
+t_graphics				*create_tgraphics(t_map *map);
+t_animation				*create_tanimation(t_map *map);
 int						exit_game(t_map *map, const char *error_message);
 int						flood_fill(t_map *map);
 void					render_map(t_map *map, int n);
