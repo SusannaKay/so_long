@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:34:15 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/14 18:29:46 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/23 06:48:06 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_map
 	int					moves;
 	int					score;
 	int					tilesize;
+	int					p_counter;
+	int					e_counter;
 }						t_map;
 
 typedef struct s_graphics
@@ -58,7 +60,7 @@ typedef struct s_graphics
 int						verify_map(t_map *map);
 void					read_map(t_map *map);
 t_map					*create_tmap(t_map *map);
-t_graphics				*create_tgraphics(t_graphics *graphics);
+t_graphics				*create_tgraphics(t_map *map);
 int						exit_game(t_map *map, const char *error_message);
 int						flood_fill(t_map *map);
 void					render_map(t_map *map, int n);

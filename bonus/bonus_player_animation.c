@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_player_animation.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skayed <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 11:33:23 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/21 11:33:25 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/23 06:32:39 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	load_player_sprites(t_map *map)
 
 int	update_player_animation(t_map *map)
 {
-	if (map->animation->frame_delay++ >= 200)
+	if (map->animation->frame_delay++ >= 150)
 	{
 		map->animation->current_frame = (map->animation->current_frame + 1) % 4;
 		map->animation->frame_delay = 0;

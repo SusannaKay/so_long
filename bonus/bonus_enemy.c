@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_enemy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skayed <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 11:33:39 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/21 11:33:41 by skayed           ###   ########.fr       */
+/*   Updated: 2025/03/23 06:32:07 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	enemy_patrol(t_map *map)
 {
 	int	next_x;
 
-	if (map->enemy->frame_delay++ < 200)
+	if (map->enemy->frame_delay++ < 150)
 		return (0);
 	map->enemy->frame_delay = 0;
 	next_x = map->enemy->x + map->enemy->direction;
