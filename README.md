@@ -74,16 +74,16 @@ Where <map.ber> should look like a secret code made of:
 
 | 🎹 Key | 🏃 Action       |
 |--------|-----------------|
-| W / ↑  | Move up         |
-| S / ↓  | Move down       |
-| A / ←  | Move left       |
-| D / →  | Move right      |
+| W 	 | Move up         |
+| S 	 | Move down       |
+| A 	 | Move left       |
+| D      | Move right      |
 | ESC    | Exit the game   |
 
 ---
 
 ## 🗂️ Project Structure (in simple words)
-
+```bash
 src/ 
 ├── main.c // The game starts here!
 ├── init_struct.c // creates and initialize all the structs of the game
@@ -99,6 +99,7 @@ bonus/
 ├── bonus_player_animation.c // Manage player animation if all 4 directions
 ├── bonus_display_moves.c // Display moves on screen
 
+```
 ---
 
 ## 🏆 My Scoreboard
